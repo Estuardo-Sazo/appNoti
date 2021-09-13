@@ -9,14 +9,24 @@ import { PostsService } from 'src/app/services/posts.service';
 })
 export class Tab1Page implements OnInit {
  posts:Post[]=[];
+
+ habilitado= true;
   constructor(private postsService:PostsService) {}
 
   ngOnInit(){
     this.siguientes();
   }
 
-  siguientes(event?){
-    this.postsService.getPosts()
+  recargar( event){
+    this.siguientes(event, true); 
+    this.habilitado=true;
+      this.posts=[];
+  }
+
+  siguientes(event?, pull:boolean=false){
+
+ 
+    this.postsService.getPosts(pull)
     .subscribe(resp=>{
         console.log(resp);
         this.posts.push(...resp.posts);
@@ -25,7 +35,7 @@ export class Tab1Page implements OnInit {
           event.target.complete();
           if(resp.posts.length===0){
 
-            event.target.disabled=true;
+           this.habilitado=false;
           }
         }
       });
