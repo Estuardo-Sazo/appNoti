@@ -1,3 +1,37 @@
-<p>
-  POST: {{post.mensaje}}
-</p>
+<div class="post">
+  <ion-item lines="none">
+    <ion-avatar slot="start">
+      <img src="/assets/avatars/{{post.usuario.avatar}}" alt="">
+    </ion-avatar>
+    <ion-label>
+      <h3>{{post.usuario.nombre}}</h3>
+      <h5>{{post.usuario.email}}</h5>
+    </ion-label>
+  </ion-item>
+
+<!-- ngIf imgs -->
+  <ion-slides pager="true">
+      <ion-slide class="image-slide" style="background-image: url('{{img1}}');">
+      </ion-slide>
+      <ion-slide class="image-slide" style="background-image: url('/assets/perro-2.jpg');">
+      </ion-slide>
+      <ion-slide class="image-slide" style="background-image: url('{{img1}}');">
+      </ion-slide>
+  </ion-slides>
+
+
+
+  <!-- Mapa -->
+
+  <ion-item lines="none">
+    <ion-icon name="heart-outline"></ion-icon>
+
+    <ion-icon slot="end" name="bookmark"></ion-icon>
+  </ion-item>
+
+  <ion-item lines="none">
+    <ion-label text-wrap>
+        {{post.mensaje}}
+    </ion-label>
+  </ion-item>
+</div>

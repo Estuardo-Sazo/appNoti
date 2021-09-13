@@ -1,5 +1,4 @@
-// slides.component.scss
-@import '~swiper/swiper';
+
 .post {
     margin-top: 10px;
     
