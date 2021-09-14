@@ -1,6 +1,8 @@
 import { Component, OnInit ,ViewChild} from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { IonSlides } from '@ionic/angular';
+import { IonSlides, NavController } from '@ionic/angular';
+import { UiServiceService } from 'src/app/services/ui-service.service';
+import { UsuarioService } from 'src/app/services/usuario.service';
 
 @Component({
   selector: 'app-login',
@@ -46,20 +48,42 @@ export class LoginPage implements OnInit {
     },
 ];
 
+
+loginUser={
+  email:'sazo@gmail.com',
+  password:'1234'
+}
+
+
+
 avatarSlide={
   slidesPerView:3.5
 }
 
-  constructor() { }
+  constructor( private usuarioService:UsuarioService,
+              private navCtrl:NavController,
+              private  uiService:UiServiceService
+    ) { }
 
   ngOnInit() {
-    this.slides.lockSwipes(true);
+    
 
   }
 
-
-  login(fLogin:NgForm){
-    console.log(fLogin.valid);
+  ionViewDidEnter() {
+    this.slides.lockSwipes(true);
+  }
+  async login(fLogin:NgForm){
+   const valido= await this.usuarioService.login(this.loginUser.email,this.loginUser.password);
+    
+    if(valido){
+      //Navegar al tab 
+        this.navCtrl.navigateRoot('/main/tabs/tab1',{animated:true});
+    }else{
+      //mostrar alerta de usuario incorrecto
+      this.uiService.alertaInfo("Usario y contraseña son incorrectos.")
+      
+    }
 
   }
 
@@ -71,5 +95,21 @@ avatarSlide={
   seleccionarAvatar(avatar){
     this.avatars.forEach(av=>av.seleccionado=false);
     avatar.seleccionado = true;
+  }
+
+  irRegistro(){
+    this.slides.lockSwipes(false);
+    this.slides.slideTo(0);
+    this.slides.lockSwipes(true);
+
+
+  }
+
+  irLogin(){
+    this.slides.lockSwipes(false);
+    this.slides.slideTo(1);
+    this.slides.lockSwipes(true);
+
+
   }
 }

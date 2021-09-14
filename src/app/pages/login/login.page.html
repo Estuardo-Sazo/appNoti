@@ -14,7 +14,7 @@
               <ion-list>
                 <ion-item>
                   <ion-label>Email</ion-label>
-                  <ion-input name="email" type="email" required></ion-input>
+                  <ion-input name="email" type="email" required [(ngModel)]="loginUser.email"></ion-input>
                 </ion-item>
 
                 <ion-item>
@@ -23,6 +23,7 @@
                     name="password"
                     type="password"
                     required
+                    [(ngModel)]="loginUser.password"
                   ></ion-input>
                 </ion-item>
               </ion-list>
@@ -112,6 +113,7 @@
           size="small"
           fill="outline"
           color="tertiary"
+          (click)="irRegistro()"
         >
           Ingresar
         </ion-button>
@@ -124,6 +126,7 @@
           size="small"
           fill="outline"
           color="tertiary"
+          (click)="irLogin()"
         >
           Registrarme
         </ion-button>

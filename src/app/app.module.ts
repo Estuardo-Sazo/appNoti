@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
+import { IonicStorageModule } from '@ionic/storage';
 
 import { HttpClientModule } from '@angular/common/http';
 
@@ -17,7 +18,8 @@ import { SwiperModule } from 'swiper/angular';
      IonicModule.forRoot(), 
      AppRoutingModule,
      HttpClientModule,
-     SwiperModule
+     SwiperModule,
+     IonicStorageModule.forRoot()
     ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],

@@ -1,0 +1,2 @@
+https://ionicframework.com/docs/v3/storage/ 
+ npm install @ionic/storage@2.2.0
