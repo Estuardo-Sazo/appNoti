@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Storage } from '@ionic/storage';
 import { environment } from 'src/environments/environment';
 import { Usuario } from '../interfaces/interfaces';
+import { NavController } from '@ionic/angular';
+
 const URL = environment.url;
 
 @Injectable({
@@ -10,8 +12,12 @@ const URL = environment.url;
 })
 export class UsuarioService {
   token: string = null;
+  usuario:Usuario={};
 
-  constructor(private http: HttpClient, private storage: Storage) {}
+  constructor(private http: HttpClient, 
+    private storage: Storage,
+    private navCtrl:NavController
+    ) {}
 
   login(email: string, password: string) {
     const data = { email, password };
@@ -50,5 +56,36 @@ export class UsuarioService {
   async guardarToken(token: string) {
     this.token = token;
     await this.storage.set('token', token);
+  }
+  async cargarTokenStorage(){
+    this.token=await  this.storage.get('token')|| null;
+  }
+
+ async validaToken():Promise<boolean>{
+
+    await this.cargarTokenStorage();
+
+    if(!this.token){
+      this.navCtrl.navigateRoot('/login');
+      return Promise.resolve(false);
+    }
+    
+    return new Promise<boolean>(resolve=>{
+      const headers= new HttpHeaders({
+        'x-token':this.token
+      });
+      this.http.get(`${URL}/user/`,{headers})
+      .subscribe(resp=>{
+        if(resp['ok']){
+          this.usuario=resp['usuario'];
+          resolve(true);
+
+        }else{
+      this.navCtrl.navigateRoot('/login');
+
+          resolve(false);
+        }
+      })
+    });
   }
 }
