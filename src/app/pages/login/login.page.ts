@@ -1,6 +1,7 @@
 import { Component, OnInit ,ViewChild} from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { IonSlides, NavController } from '@ionic/angular';
+import { Usuario } from 'src/app/interfaces/interfaces';
 import { UiServiceService } from 'src/app/services/ui-service.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
 
@@ -13,40 +14,7 @@ export class LoginPage implements OnInit {
 
   @ViewChild('slidePrincipal') slides: IonSlides;
 
-  avatars = [
-    {
-      img: 'av-1.png',
-      seleccionado: true
-    },
-    {
-      img: 'av-2.png',
-      seleccionado: false
-    },
-    {
-      img: 'av-3.png',
-      seleccionado: false
-    },
-    {
-      img: 'av-4.png',
-      seleccionado: false
-    },
-    {
-      img: 'av-5.png',
-      seleccionado: false
-    },
-    {
-      img: 'av-6.png',
-      seleccionado: false
-    },
-    {
-      img: 'av-7.png',
-      seleccionado: false
-    },
-    {
-      img: 'av-8.png',
-      seleccionado: false
-    },
-];
+ 
 
 
 loginUser={
@@ -54,11 +22,15 @@ loginUser={
   password:'1234'
 }
 
+registerUser:Usuario={
+  email:'test',
+  password:'1234',
+  nombre:"Test",
+};
 
 
-avatarSlide={
-  slidesPerView:3.5
-}
+
+
 
   constructor( private usuarioService:UsuarioService,
               private navCtrl:NavController,
@@ -87,15 +59,22 @@ avatarSlide={
 
   }
 
-  registr(fRegistro:NgForm){
-    console.log(fRegistro.valid);
+  async registr(fRegistro:NgForm){
+    if(fRegistro.invalid){return;}
 
+    const valido= await this.usuarioService.registro(this.registerUser);
+
+    if(valido){
+      //Navegar al tab 
+        this.navCtrl.navigateRoot('/main/tabs/tab1',{animated:true});
+    }else{
+      //mostrar alerta de usuario incorrecto
+      this.uiService.alertaInfo("Error en los datos.")
+      
+    }
   }
 
-  seleccionarAvatar(avatar){
-    this.avatars.forEach(av=>av.seleccionado=false);
-    avatar.seleccionado = true;
-  }
+
 
   irRegistro(){
     this.slides.lockSwipes(false);
