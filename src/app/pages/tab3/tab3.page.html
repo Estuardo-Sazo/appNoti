@@ -31,7 +31,7 @@
 
   <app-avatar-selector></app-avatar-selector>
 
-  <form>
+  <form (ngSubmit)="actualizar(fActualizar)" #fActualizar>
       <ion-row>
         <ion-col>
           
@@ -41,6 +41,7 @@
                 <ion-label>Email</ion-label>
                 <ion-input name="email"
                            type="email"
+                           [(ngModel)]="usuario.email"
                            required></ion-input>
               </ion-item>
 
@@ -48,6 +49,8 @@
                 <ion-label>Nombre</ion-label>
                 <ion-input name="nombre"
                            type="text"
+                           [(ngModel)]="usuario.nombre"
+
                            required></ion-input>
               </ion-item>
 

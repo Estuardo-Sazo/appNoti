@@ -1,2 +1,3 @@
 https://ionicframework.com/docs/v3/storage/ 
+ionic cordova plugin add cordova-sqlite-storage
  npm install @ionic/storage@2.2.0

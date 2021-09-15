@@ -12,12 +12,12 @@ const URL = environment.url;
 })
 export class UsuarioService {
   token: string = null;
-  usuario:Usuario={};
+  private usuario: Usuario = {};
 
-  constructor(private http: HttpClient, 
+  constructor(private http: HttpClient,
     private storage: Storage,
-    private navCtrl:NavController
-    ) {}
+    private navCtrl: NavController
+  ) { }
 
   login(email: string, password: string) {
     const data = { email, password };
@@ -53,39 +53,65 @@ export class UsuarioService {
     });
   }
 
+  getusuario() {
+    if (!this.usuario._id) {
+      this.validaToken();
+    }
+    return { ...this.usuario };
+  }
+
   async guardarToken(token: string) {
     this.token = token;
     await this.storage.set('token', token);
   }
-  async cargarTokenStorage(){
-    this.token=await  this.storage.get('token')|| null;
+  async cargarTokenStorage() {
+    this.token = await this.storage.get('token') || null;
   }
 
- async validaToken():Promise<boolean>{
+  async validaToken(): Promise<boolean> {
 
     await this.cargarTokenStorage();
 
-    if(!this.token){
+    if (!this.token) {
       this.navCtrl.navigateRoot('/login');
       return Promise.resolve(false);
     }
-    
-    return new Promise<boolean>(resolve=>{
-      const headers= new HttpHeaders({
-        'x-token':this.token
+
+    return new Promise<boolean>(resolve => {
+      const headers = new HttpHeaders({
+        'x-token': this.token
       });
-      this.http.get(`${URL}/user/`,{headers})
-      .subscribe(resp=>{
-        if(resp['ok']){
-          this.usuario=resp['usuario'];
-          resolve(true);
+      this.http.get(`${URL}/user/`, { headers })
+        .subscribe(resp => {
+          if (resp['ok']) {
+            this.usuario = resp['usuario'];
+            resolve(true);
 
-        }else{
-      this.navCtrl.navigateRoot('/login');
+          } else {
+            this.navCtrl.navigateRoot('/login');
 
-          resolve(false);
-        }
-      })
+            resolve(false);
+          }
+        });
+    });
+  }
+
+  actualizarUsuario(usuario: Usuario) {
+    const headers = new HttpHeaders({
+      'x-token': this.token
+    });
+    return new Promise((resolve, reject) => {
+
+      this.http.post(`${URL}/user/update`, usuario, { headers })
+        .subscribe(resp => {
+          if (resp['ok']) {
+            this.guardarToken(resp['token']);
+            resolve(true);
+          } else {
+            resolve(false);
+          }
+        });
+
     });
   }
 }
