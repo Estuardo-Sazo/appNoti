@@ -14,14 +14,14 @@
 
   <ion-row class="top-20">
     
-    <ion-col size="12" text-center>
-      <img src="assets/avatars/av-8.png" class="img-avatar">
+    <ion-col size="12" class="ion-text-center">
+      <img src="assets/avatars/{{usuario.avatar}}" class="img-avatar">
     </ion-col>
 
   </ion-row>
 
   <ion-row class="top-20">
-    <ion-col size="12" text-center>
+    <ion-col size="12" class="ion-text-center">
       <ion-label>
         <h1>Actualizar perfil</h1>
       </ion-label>
@@ -29,7 +29,7 @@
   </ion-row>
 
 
-  <app-avatar-selector></app-avatar-selector>
+  <app-avatar-selector (avatarSel)="usuario.avatar = $event" [avatarActual]="usuario.avatar" ></app-avatar-selector>
 
   <form (ngSubmit)="actualizar(fActualizar)" #fActualizar>
       <ion-row>

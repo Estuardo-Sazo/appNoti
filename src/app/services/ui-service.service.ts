@@ -19,10 +19,11 @@ export class UiServiceService {
     await alert.present();
   }
   
-  async presentToast() {
+  async presentToast(message) {
     const toast = await this.toastController.create({
-      message: 'Your settings have been saved.',
-      duration: 2000
+      message,
+      position:'top',
+      duration: 1500
     });
     toast.present();
   }
