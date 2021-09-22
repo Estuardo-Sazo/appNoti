@@ -10,6 +10,7 @@
   </ion-item>
 
 <!-- ngIf imgs -->
+<!-- 
   <ion-slides pager="true">
       <ion-slide class="image-slide" style="background-image: url('{{img1}}');">
       </ion-slide>
@@ -18,10 +19,12 @@
       <ion-slide class="image-slide" style="background-image: url('{{img1}}');">
       </ion-slide>
   </ion-slides>
-
+ -->
 
 
   <!-- Mapa -->
+
+  <app-mapa [(coords)]="post.coords" ></app-mapa>
 
   <ion-item lines="none">
     <ion-icon name="heart-outline"></ion-icon>
