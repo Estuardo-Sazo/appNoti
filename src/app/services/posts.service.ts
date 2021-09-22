@@ -36,7 +36,7 @@ export class PostsService {
       this.http.post(`${URL}/posts`, post, { headers })
         .subscribe(resp => {
           console.log(resp);
-          this.nuevoPost.emit(resp[post]);
+          this.nuevoPost.emit(resp['post']);
           resolve(true);
         });
     });

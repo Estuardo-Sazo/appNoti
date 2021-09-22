@@ -1,3 +1,8 @@
 https://ionicframework.com/docs/v3/storage/ 
 ionic cordova plugin add cordova-sqlite-storage
  npm install @ionic/storage@2.2.0
+
+ 261 ionic-native-Geolocation
+https://ionicframework.com/docs/native/geolocation
+ionic cordova plugin add cordova-plugin-geolocation
+npm install @ionic-native/geolocation
