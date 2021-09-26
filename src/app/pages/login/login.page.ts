@@ -47,7 +47,8 @@ registerUser:Usuario={
   }
   async login(fLogin:NgForm){
    const valido= await this.usuarioService.login(this.loginUser.email,this.loginUser.password);
-    
+     console.log(valido);
+     
     if(valido){
       //Navegar al tab 
         this.navCtrl.navigateRoot('/main/tabs/tab1',{animated:true});

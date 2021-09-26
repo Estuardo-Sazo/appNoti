@@ -13,11 +13,11 @@ export class Tab3Page  implements OnInit{
 
   usuario: Usuario = {};
   constructor(private usuarioService: UsuarioService,
-  private uiService:UiServiceService
+  private uiService: UiServiceService
   ) { }
 
   ngOnInit() {
-    this.usuario = this.usuarioService.getusuario();
+    this.usuario = this.usuarioService.getUsuario();
     console.log(this.usuario);
   }
 

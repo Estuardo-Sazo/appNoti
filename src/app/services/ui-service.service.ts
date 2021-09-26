@@ -10,7 +10,7 @@ export class UiServiceService {
     private toastController: ToastController
   ) { }
 
-  async alertaInfo(message:string) {
+  async alertaInfo(message: string) {
     const alert = await this.alertController.create({   
       message,
       buttons: ['OK']

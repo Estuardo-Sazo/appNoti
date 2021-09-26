@@ -5,6 +5,7 @@ import { RouteReuseStrategy } from '@angular/router';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { IonicStorageModule } from '@ionic/storage';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { Camera } from '@ionic-native/camera/ngx';
 
 import { HttpClientModule } from '@angular/common/http';
 
@@ -24,6 +25,7 @@ import { SwiperModule } from 'swiper/angular';
     ],
   providers: [
     Geolocation,
+    Camera,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })
