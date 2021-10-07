@@ -17,7 +17,7 @@ import { SwiperModule } from 'swiper/angular';
   declarations: [AppComponent],
   entryComponents: [],
   imports: [BrowserModule,
-     IonicModule.forRoot(), 
+     IonicModule.forRoot(),
      AppRoutingModule,
      HttpClientModule,
      SwiperModule,
