@@ -90,8 +90,9 @@ export class Tab2Page {
     this.camera.getPicture(options).then((imageData) => {
       // imageData is either a base64 encoded string or a file URI
       // If it's base64 (DATA_URL):
-       const img = window.Ionic.WebView.convertFileSrc(imageData);
- 
+      const img = window.Ionic.WebView.convertFileSrc(imageData);
+
+      this.postsService.subirImagen(imageData);
        console.log(img);
        this.tempImages.push(img);
      }, (err) => {

@@ -6,7 +6,6 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class ImageSanitizerPipe implements PipeTransform {
   constructor(private domSanitizer: DomSanitizer) {
-  
   }
 
   transform(img: any): any {
