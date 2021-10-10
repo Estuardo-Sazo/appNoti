@@ -10,21 +10,28 @@
   </ion-item>
 
 <!-- ngIf imgs -->
-<!-- 
-  <ion-slides pager="true">
-      <ion-slide class="image-slide" style="background-image: url('{{img1}}');">
+
+  <ion-slides pager="true" *ngIf="post.imgs.length  >1">
+      <ion-slide *ngFor="let img of post.imgs"
+                 class="image-slide" 
+                 style="background-image: url('{{img | imagen:post.usuario._id}}');">
       </ion-slide>
-      <ion-slide class="image-slide" style="background-image: url('/assets/perro-2.jpg');">
-      </ion-slide>
-      <ion-slide class="image-slide" style="background-image: url('{{img1}}');">
-      </ion-slide>
+      
   </ion-slides>
- -->
+
+  <ion-slides pager="false" *ngIf="post.imgs.length  ===1" [options]="slideSoloOpts">
+    <ion-slide class="image-slide" 
+                style="background-image: url('{{post.imgs[0] | imagen:post.usuario._id}}');">
+    </ion-slide>
+    
+</ion-slides>
+
+
 
 
   <!-- Mapa -->
 
-  <app-mapa [(coords)]="post.coords" ></app-mapa>
+  <app-mapa [(coords)]="post.coords" *ngIf="post.coords"></app-mapa>
 
   <ion-item lines="none">
     <ion-icon name="heart-outline"></ion-icon>

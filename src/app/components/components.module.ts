@@ -5,6 +5,7 @@ import { PostsComponent } from './posts/posts.component';
 import { IonicModule } from '@ionic/angular';
 import { AvatarSelectorComponent } from './avatar-selector/avatar-selector.component';
 import { MapaComponent } from './mapa/mapa.component';
+import { PipesModule } from '../pipes/pipes.module';
 
 
 
@@ -21,7 +22,8 @@ import { MapaComponent } from './mapa/mapa.component';
   ],
   imports: [
     CommonModule,
-    IonicModule
+    IonicModule,
+    PipesModule
   ]
 })
 export class ComponentsModule { }
