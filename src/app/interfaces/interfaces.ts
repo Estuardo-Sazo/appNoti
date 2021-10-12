@@ -15,10 +15,13 @@ export interface RespuestaPosts {
   }
   
   export interface Usuario {
-    avatar?: string;
+    image?: string;
     _id?: string;
-    nombre?: string;
+    names?: string;
+    surnames?: string;
     email?: string;
+    cui?: string;
+    phone?: string;
     password?:string;
   }
   

@@ -75,10 +75,7 @@ export class UsuarioService {
     if (!this.usuario._id) {
       this.validaToken();
     }
-    console.log(this.usuario);
-    console.log(this.token);
-
-    
+   
     return { ...this.usuario };
   }
 
@@ -108,9 +105,7 @@ export class UsuarioService {
         .subscribe(resp => {
           
           if (resp['ok']) {
-            this.usuario = resp['usuario'];
-            console.log(this.usuario);
-            
+            this.usuario = resp['usuario'];            
             resolve(true);
 
           } else {

@@ -23,9 +23,13 @@ loginUser={
 }
 
 registerUser:Usuario={
-  email:'test',
+  email:'test@test.com',
   password:'1234',
-  nombre:"Test",
+  names:"Test",
+  surnames:"2",
+  cui:"",
+  phone:"",
+
 };
 
 
@@ -61,7 +65,10 @@ registerUser:Usuario={
   }
 
   async registr(fRegistro:NgForm){
-    if(fRegistro.invalid){return;}
+    if(fRegistro.invalid){
+      //Completar los campos
+      this.uiService.alertaInfo("Campos incompletos.") 
+      return;}
 
     const valido= await this.usuarioService.registro(this.registerUser);
 

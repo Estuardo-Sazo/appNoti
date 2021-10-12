@@ -1,11 +1,11 @@
 <div class="post">
   <ion-item lines="none">
     <ion-avatar slot="start">
-      <img src="/assets/avatars/{{post.usuario.avatar}}" alt="">
-    </ion-avatar>
+      <img src="/assets/avatars/{{post.user.image}}" alt="">
+    </ion-avatar> 
     <ion-label>
-      <h3>{{post.usuario.nombre}}</h3>
-      <h5>{{post.usuario.email}}</h5>
+      <h3>{{post.user.names}} {{post.user.surnames}}</h3>
+      <h5>{{post.user.email}}</h5>
     </ion-label>
   </ion-item>
 
@@ -14,14 +14,14 @@
   <ion-slides pager="true" *ngIf="post.imgs.length  >1">
       <ion-slide *ngFor="let img of post.imgs"
                  class="image-slide" 
-                 style="background-image: url('{{img | imagen:post.usuario._id}}');">
+                 style="background-image: url('{{img | imagen:post.user._id}}');">
       </ion-slide>
       
   </ion-slides>
 
   <ion-slides pager="false" *ngIf="post.imgs.length  ===1" [options]="slideSoloOpts">
     <ion-slide class="image-slide" 
-                style="background-image: url('{{post.imgs[0] | imagen:post.usuario._id}}');">
+                style="background-image: url('{{post.imgs[0] | imagen:post.user._id}}');">
     </ion-slide>
     
 </ion-slides>

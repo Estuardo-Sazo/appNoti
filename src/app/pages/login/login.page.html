@@ -1,6 +1,12 @@
+<ion-header translucent>
+  <ion-toolbar>
+    <ion-title class="ion-text-center">Cuminidad App</ion-title>
+  </ion-toolbar>
+</ion-header>
 <ion-content>
   <ion-slides class="mainSlide" #slidePrincipal>
     <ion-slide>
+      
       <form (ngSubmit)="login(fLogin)" #fLogin="ngForm">
         <ion-grid fixed>
           <ion-row>
@@ -13,12 +19,12 @@
             <ion-col>
               <ion-list>
                 <ion-item>
-                  <ion-label>Email</ion-label>
+                  <ion-label position="floating">Correo</ion-label>
                   <ion-input name="email" type="email" required [(ngModel)]="loginUser.email"></ion-input>
                 </ion-item>
 
                 <ion-item>
-                  <ion-label>Password</ion-label>
+                  <ion-label position="floating">Contraseña</ion-label>
                   <ion-input
                     name="password"
                     type="password"
@@ -33,7 +39,7 @@
           <ion-row>
             <ion-col>
               <ion-button type="submit" color="tertiary" shape="round">
-                Login
+                Ingresar
               </ion-button>
             </ion-col>
           </ion-row>
@@ -44,24 +50,44 @@
     <ion-slide>
       <ion-grid fixed>
         <!-- Avatar selector -->
-        <app-avatar-selector (avatarSel)="registerUser.avatar=$event"></app-avatar-selector>
        
+        <ion-row >
+          <ion-col class="ion-text-center">
+            
+            <h3>Registrarme</h3>
+          </ion-col>
+        </ion-row>
         <form (ngSubmit)="registr(fRegistro)" #fRegistro="ngForm">
           <ion-row>
             <ion-col>
               <ion-list>
+                
+
                 <ion-item>
-                  <ion-label>Email</ion-label>
+                  <ion-label position="floating">Nombres</ion-label>
+                  <ion-input name="names" type="text" required [(ngModel)]="registerUser.names"></ion-input>
+                </ion-item>
+                
+                <ion-item>
+                  <ion-label position="floating">Apellidos</ion-label>
+                  <ion-input name="surname" type="text" required [(ngModel)]="registerUser.surnames"></ion-input>
+                </ion-item>
+
+                <ion-item>
+                  <ion-label position="floating">DPI</ion-label>
+                  <ion-input name="cui" type="text" required [(ngModel)]="registerUser.cui"></ion-input>
+                </ion-item> 
+                <ion-item>
+                  <ion-label position="floating">Télefono</ion-label>
+                  <ion-input name="phone" type="text"  [(ngModel)]="registerUser.phone"></ion-input>
+                </ion-item> 
+                <ion-item>
+                  <ion-label position="floating">Correo</ion-label>
                   <ion-input name="email" type="email" required [(ngModel)]="registerUser.email"></ion-input>
                 </ion-item>
 
                 <ion-item>
-                  <ion-label>Nombre</ion-label>
-                  <ion-input name="nombre" type="text" required [(ngModel)]="registerUser.nombre"></ion-input>
-                </ion-item>
-
-                <ion-item>
-                  <ion-label>Password</ion-label>
+                  <ion-label position="floating">Contrseña</ion-label>
                   <ion-input
                     name="password"
                     type="password"
