@@ -1,0 +1,32 @@
+<ion-header translucent>
+  <ion-toolbar>
+    <ion-title>Reportes</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" color="light">
+   <!-- Refresher -->
+   <ion-refresher slot="fixed" (ionRefresh)="recargar($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  
+  <ion-list>
+    <ion-list-header>
+      Mis reportes
+    </ion-list-header>
+
+    <ion-item *ngFor="let report of reports">      
+      <ion-label>
+        <h2>{{report.type['name']}}</h2>
+        <h3>{{report.created | date:'d MMM y, h:mm a'}}</h3>
+        <p>{{report.message}}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="addReport()"> 
+    <ion-fab-button>
+      <ion-icon name="add-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

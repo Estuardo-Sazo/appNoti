@@ -25,10 +25,7 @@ export class UsuarioService {
     const data = { email, password };
 
     return new Promise((resolve) => {
-     /*  this.http.get('https://pagos-web.000webhostapp.com/api/users/').subscribe((res) => {
-        console.log(res);
-        resolve(false);
-      }); */
+    
       this.http.post(`${URL}/user/login`, data).subscribe( async (resp) => {
         console.log(resp);
         if (resp['ok'] == true) {
@@ -86,6 +83,34 @@ export class UsuarioService {
   }
   async cargarTokenStorage() {
     this.token = await this.storage.get('token') || null;
+  }
+
+  async roleUser(role ='USER'):Promise<boolean>{
+    await this.cargarTokenStorage();
+    if (!this.token) {
+      this.navCtrl.navigateRoot('/login');
+      return Promise.resolve(false);
+    }
+    return new Promise<boolean>(resolve => {
+      const headers = new HttpHeaders({
+        'x-token': this.token
+      });
+      this.http.get(`${URL}/user/`, { headers })
+        .subscribe(resp => {          
+          if (resp['ok']) {
+            console.log(resp['usuario'].type); 
+            if(role===resp['usuario'].type){
+              this.navCtrl.navigateRoot('/main/tabs/tab1');
+              resolve(false);
+            } else {
+              resolve(true);
+  
+            }         
+            
+          } 
+        });
+    });
+
   }
 
   async validaToken(): Promise<boolean> {

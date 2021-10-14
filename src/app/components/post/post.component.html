@@ -5,7 +5,7 @@
     </ion-avatar> 
     <ion-label>
       <h3>{{post.user.names}} {{post.user.surnames}}</h3>
-      <h5>{{post.user.email}}</h5>
+      <h5>{{post.created | date:'d MMM y, h:mm a'}}</h5>
     </ion-label>
   </ion-item>
 
@@ -41,7 +41,7 @@
 
   <ion-item lines="none">
     <ion-label text-wrap>
-        {{post.mensaje}}
+        {{post.message}}
     </ion-label>
   </ion-item>
 </div>

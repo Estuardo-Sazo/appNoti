@@ -15,7 +15,7 @@ export class Tab2Page {
   tempImages: string[] = [];
   cargandoGeo=false;
   post = {
-    mensaje: '',
+    message: '',
     coords: null,
     posicion: false
   };
@@ -30,7 +30,7 @@ export class Tab2Page {
     console.log(this.post);
     const creado=await this.postsService.createPost(this.post);
     this.post ={
-      mensaje: '',
+      message: '',
       coords: null,
       posicion: false
     };

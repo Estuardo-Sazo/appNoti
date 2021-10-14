@@ -1,0 +1,84 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button
+        (click)="createReport()"
+        [disabled]="report.message.length < 1 "
+        color="primary"
+      >
+        Enviar Reporte
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col class="ion-text-center">
+        <h3>Nuevo Reporte</h3>
+      </ion-col>
+    </ion-row>
+
+    <ion-list>
+      <ion-item>
+        <ion-label>Tipo de reporte</ion-label>
+
+        <ion-select class= "myCustomSelect" placeholder="Selecione el tipo" name="type"  [(ngModel)]="report.type"  required>
+          <ion-select-option
+            *ngFor="let type of typeReports"
+            value="{{type._id}}"
+            >{{type.name}}</ion-select-option
+          >
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Mensaje</ion-label>
+        <ion-textarea name="message" [(ngModel)]="report.message" required></ion-textarea>
+      </ion-item>
+    </ion-list>
+    <ion-list>
+      <ion-item>
+        <ion-label>Enviar Ubicación</ion-label>
+        <ion-spinner name="lines-small" *ngIf="cargandoGeo"> </ion-spinner>
+        <ion-toggle
+          slot="end"
+          [(ngModel)]="report.posicion"
+          (ionChange)="getGeo()"
+        ></ion-toggle>
+      </ion-item>
+    </ion-list>
+
+    <ion-list>
+      <ion-item>
+        <ion-label>Agregar Imagenes</ion-label>
+      </ion-item>
+    </ion-list>
+
+    <ion-row>
+      <ion-col size="6">
+        <ion-button expand="full" shape="round" (click)="camara()">
+          <ion-icon slot="start" name="camera"></ion-icon>
+          Cámara
+        </ion-button>
+      </ion-col>
+      <ion-col size="6">
+        <ion-button expand="full" shape="round" (click)="libreria()">
+          <ion-icon slot="start" name="images"></ion-icon>
+          Galería
+        </ion-button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="3" *ngFor="let image of tempImages">
+        <ion-card>
+          <img [src]="image | imageSanitizer" />
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
