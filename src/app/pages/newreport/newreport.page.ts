@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { TypeReportService } from 'src/app/services/type-report.service';
 import { TypeReport } from 'src/app/interfaces/interfaces';
-import { NavController } from '@ionic/angular';
+import { ModalController, NavController } from '@ionic/angular';
 
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { ReportsService } from 'src/app/services/reports.service';
 import { Router } from '@angular/router';
 import { UiServiceService } from 'src/app/services/ui-service.service';
+import { ReportPage } from 'src/app/modal/report/report.page';
 
 declare let window: any;
 
@@ -42,7 +43,7 @@ export class NewreportPage implements OnInit {
             private camera: Camera,
             private router: Router,
             private navCtrl:NavController,
-            private  uiService:UiServiceService
+            private  uiService:UiServiceService,
 
   ) { }
 
@@ -58,6 +59,7 @@ export class NewreportPage implements OnInit {
     });
   }
 
+  
   getGeo(){
     if(!this.report.posicion){
       this.report.coords=null;

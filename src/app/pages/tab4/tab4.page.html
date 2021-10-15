@@ -21,6 +21,8 @@
         <h3>{{report.created | date:'d MMM y, h:mm a'}}</h3>
         <p>{{report.message}}</p>
       </ion-label>
+      <button ion-button clear item-end (click)="openModal(report)" expand="full">Ver</button>
+
     </ion-item>
   </ion-list>
 

@@ -4,10 +4,9 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { Tab4PageRoutingModule } from './tab4-routing.module';
+import { ReportPageRoutingModule } from './report-routing.module';
 
-import { Tab4Page } from './tab4.page';
-import { ReportPage } from 'src/app/modal/report/report.page';
+import { ReportPage } from './report.page';
 import { PipesModule } from 'src/app/pipes/pipes.module';
 
 @NgModule({
@@ -16,10 +15,8 @@ import { PipesModule } from 'src/app/pipes/pipes.module';
     FormsModule,
     IonicModule,
     PipesModule,
-    Tab4PageRoutingModule
+    ReportPageRoutingModule
   ],
-  declarations: [Tab4Page,ReportPage],
-  entryComponents:[ReportPage]
-  
+  declarations: [ReportPage]
 })
-export class Tab4PageModule {}
+export class ReportPageModule {}

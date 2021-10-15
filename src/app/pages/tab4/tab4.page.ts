@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ModalController } from '@ionic/angular';
 import { Report } from 'src/app/interfaces/interfaces';
+import { ReportPage } from 'src/app/modal/report/report.page';
 import { ReportsService } from 'src/app/services/reports.service';
 
 @Component({
@@ -13,7 +15,9 @@ export class Tab4Page implements OnInit {
   habilitado = true;
   constructor(
               private reportsService: ReportsService,
-              private router: Router
+              private router: Router,
+            private modalController: ModalController
+
   ) { }
 
   ngOnInit() {
@@ -23,6 +27,16 @@ export class Tab4Page implements OnInit {
     })
 
   }
+
+  async openModal(report){
+    const modal = await this.modalController.create({
+      componentProps:{report},
+      swipeToClose: true,
+      component: ReportPage
+    });
+    return await modal.present();
+    }
+  
 
   addReport() {
     this.router.navigate(['/newreport/']);

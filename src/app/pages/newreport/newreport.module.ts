@@ -7,6 +7,7 @@ import { NewreportPage } from './newreport.page';
 import { PipesModule } from 'src/app/pipes/pipes.module';
 import { ExploreContainerComponentModule } from '../explore-container/explore-container.module';
 
+
 @NgModule({
   imports: [
     CommonModule,
@@ -16,6 +17,6 @@ import { ExploreContainerComponentModule } from '../explore-container/explore-co
     ExploreContainerComponentModule,
     NewreportPageRoutingModule
   ],
-  declarations: [NewreportPage]
+  declarations: [NewreportPage],
 })
 export class NewreportPageModule {}

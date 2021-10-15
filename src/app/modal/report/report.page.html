@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Reporte</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="closeModal()">
+        <ion-icon slot="icon-only" name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- ngIf imgs -->
+  <ion-slides pager="true" *ngIf="report.imgs.length >1">
+    <ion-slide
+      *ngFor="let img of report.imgs"
+      class="image-slide"
+      style="background-image: url('{{img | imageReport:report.user._id}}');"
+    >
+    </ion-slide>
+  </ion-slides>
+
+  <ion-card-title>{{report.message}}</ion-card-title>
+</ion-content>

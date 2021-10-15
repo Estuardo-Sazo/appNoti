@@ -13,7 +13,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SwiperModule } from 'swiper/angular';
-import { NewreportPageModule } from './pages/newreport/newreport.module';
 
 @NgModule({
   declarations: [AppComponent],
