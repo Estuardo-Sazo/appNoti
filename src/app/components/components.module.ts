@@ -14,11 +14,12 @@ import { PipesModule } from '../pipes/pipes.module';
     PostComponent,
     PostsComponent,
     AvatarSelectorComponent,
-    MapaComponent
+    MapaComponent,
   ],
   exports:[
     PostsComponent,
-    AvatarSelectorComponent
+    AvatarSelectorComponent,
+    MapaComponent,
   ],
   imports: [
     CommonModule,

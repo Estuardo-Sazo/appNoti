@@ -1,5 +1,4 @@
 // slides.component.scss
-@import '~swiper/swiper';
 .post {
     margin-top: 10px;
     
@@ -20,4 +19,14 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size:contain;
+}
+
+
+ion-card-title{
+    font-size: 1.2rem;
+}
+
+
+.text-bold{
+    font-weight:bold;
 }

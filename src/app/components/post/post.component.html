@@ -1,55 +1,46 @@
-<div class="post">
-
-
-  
-
-  <ion-item lines="none">
+<ion-card class="post">
+  <ion-item>
     <ion-avatar slot="start">
       <img src="/assets/avatars/{{post.user.image}}" alt="">
-    </ion-avatar> 
+    </ion-avatar>
     <ion-label>
       <h3>{{post.user.names}} {{post.user.surnames}}</h3>
-      <h5>{{post.created | date:'d MMM y, h:mm a'}}</h5>
+      <p>{{post.created | date:'d MMM y, h:mm a'}}</p>
+
     </ion-label>
   </ion-item>
-
-  <!-- Text message -->
-  <ion-item lines="none">
-    <ion-label text-wrap>
-        {{post.message}}
-    </ion-label>
-  </ion-item>
-
-<!-- ngIf imgs -->
+  <!-- ngIf imgs -->
 
   <ion-slides pager="true" *ngIf="post.imgs.length  >1">
-      <ion-slide *ngFor="let img of post.imgs"
-                 class="image-slide" 
-                 style="background-image: url('{{img | imagen:post.user._id}}');">
-      </ion-slide>
-      
+    <ion-slide *ngFor="let img of post.imgs" class="image-slide"
+      style="background-image: url('{{img | imagen:post.user._id}}');">
+    </ion-slide>
+
   </ion-slides>
 
   <ion-slides pager="false" *ngIf="post.imgs.length  ===1" [options]="slideSoloOpts">
-    <ion-slide class="image-slide" 
-                style="background-image: url('{{post.imgs[0] | imagen:post.user._id}}');">
+    <ion-slide class="image-slide" style="background-image: url('{{post.imgs[0] | imagen:post.user._id}}');">
     </ion-slide>
-    
-</ion-slides>
 
+  </ion-slides>
+  <ion-card-header>
+    <ion-card-subtitle text-wrap> {{post.message}}
+    </ion-card-subtitle>
+  </ion-card-header>
 
+  <ion-footer>
+    <ion-row>
+      <ion-col center text-center>
+        <ion-button color="light">
+          <ion-icon slot="start" name="thumbs-up"></ion-icon>
+          <p> Me gusta</p>
+        </ion-button>
+      </ion-col>
 
+      <ion-col>
+        <ion-button color="light" disabled>0 me gustas</ion-button>
+      </ion-col>
 
-  <!-- Mapa -->
-
-  <app-mapa [(coords)]="post.coords" *ngIf="post.coords"></app-mapa>
-
-  <ion-item lines="none">
-    <ion-icon name="heart-outline"></ion-icon>
-
-    <button slot="end"  ion-button clear item-end>Ver</button>
-
-  </ion-item>
-
-  
-</div>
+    </ion-row>
+  </ion-footer>
+</ion-card>

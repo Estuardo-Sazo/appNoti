@@ -25,8 +25,9 @@ const routes: Routes = [
   {
     path: 'newreport',
     loadChildren: () => import('./pages/newreport/newreport.module').then( m => m.NewreportPageModule)
-  },  {
-    path: 'report',
+  },
+  {
+    path: 'report/:idReport',
     loadChildren: () => import('./modal/report/report.module').then( m => m.ReportPageModule)
   }
 

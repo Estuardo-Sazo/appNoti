@@ -14,32 +14,37 @@ export class Tab4Page implements OnInit {
   reports: Report[] = [];
   habilitado = true;
   constructor(
-              private reportsService: ReportsService,
-              private router: Router,
-            private modalController: ModalController
-
-  ) { }
+    private reportsService: ReportsService,
+    private router: Router,
+    private modalController: ModalController
+  ) {}
 
   ngOnInit() {
     this.siguientes();
-    this.reportsService.newReport.subscribe(report=>{
+    this.reportsService.newReport.subscribe((report) => {
       this.reports.unshift(report);
-    })
+    });
+  }
+
+  async openModal(report) {
+    const modal = await this.modalController.create({
+      componentProps: { report },
+      swipeToClose: true,
+      component: ReportPage,
+    });
+    return await modal.present();
+  }
+
+  reporView(report){
+   
+    this.router.navigateByUrl('/report/'+report._id);
 
   }
 
-  async openModal(report){
-    const modal = await this.modalController.create({
-      componentProps:{report},
-      swipeToClose: true,
-      component: ReportPage
-    });
-    return await modal.present();
-    }
-  
-
   addReport() {
-    this.router.navigate(['/newreport/']);
+   // this.router.navigate(['/newreport/']);
+    this.router.navigateByUrl('/newreport/');
+
   }
 
   recargar(event) {
@@ -56,7 +61,7 @@ export class Tab4Page implements OnInit {
       if (event) {
         event.target.complete();
         console.log(this.reports);
-        
+
         if (resp.reports.length === 0) {
           this.habilitado = false;
         }

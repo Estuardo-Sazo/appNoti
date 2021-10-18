@@ -15,6 +15,12 @@ export interface RespuestaPosts {
     ok: boolean;
     typeReports: TypeReport[];
   }
+
+  export interface GetReport {
+    ok: boolean;
+    report: Report;
+  }
+  
   
   
   export interface Post {
@@ -30,7 +36,7 @@ export interface RespuestaPosts {
     imgs?: string[];
     _id?: string;
     message?: string;
-    type:TypeReport;
+    type?:TypeReport;
     coords?: string;
     user?: Usuario;
     created?: string;

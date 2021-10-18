@@ -13,6 +13,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SwiperModule } from 'swiper/angular';
+import { ReportPageModule } from './modal/report/report.module';
+import { PipesModule } from './pipes/pipes.module';
+import { ReportPage } from './modal/report/report.page';
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,7 +25,7 @@ import { SwiperModule } from 'swiper/angular';
      AppRoutingModule,
      HttpClientModule,
      SwiperModule,
-     
+     PipesModule,
      IonicStorageModule.forRoot()
     ],
   providers: [

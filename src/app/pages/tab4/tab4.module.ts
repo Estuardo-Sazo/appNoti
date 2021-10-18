@@ -18,8 +18,7 @@ import { PipesModule } from 'src/app/pipes/pipes.module';
     PipesModule,
     Tab4PageRoutingModule
   ],
-  declarations: [Tab4Page,ReportPage],
-  entryComponents:[ReportPage]
+  declarations: [Tab4Page],
   
 })
 export class Tab4PageModule {}

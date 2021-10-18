@@ -1,6 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
-import { Report } from 'src/app/interfaces/interfaces';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Report, Usuario } from 'src/app/interfaces/interfaces';
+import { ReportsService } from 'src/app/services/reports.service';
 
 @Component({
   selector: 'app-report',
@@ -8,18 +9,40 @@ import { Report } from 'src/app/interfaces/interfaces';
   styleUrls: ['./report.page.scss'],
 })
 export class ReportPage implements OnInit {
-  @Input() report: Report;
-           
-  constructor( private modalController: ModalController) { }
-
-  ngOnInit() {
-    console.log(this.report);
-       
+  user:Usuario={};
+  report:Report={
+    imgs:[],
+    user:this.user,
+    type:{}
+  };
+  imgsR:String[]=[];
+  reportId;
+  slideSoloOpts={
+    allowSlideNext:false,
+    allowSlidePrev:false
   }
 
- async closeModal(){
- 
-    await this.modalController.dismiss();
+  constructor( private reportsService: ReportsService,
+    private router: ActivatedRoute,) {
 
-}
+    this.reportId = this.router.snapshot.paramMap.get('idReport');
+    
+  }
+  async ngOnInit() {
+    
+    try{
+      this.reportsService.getReport(this.reportId).subscribe((data)=>{      
+      this.report=data.report[0];
+      this.user=this.report.user;
+      this.imgsR.push(...this.report.imgs);
+      console.log(this.report);
+      console.log(this.imgsR);
+
+
+    });
+    }catch(error){
+      console.log(error)
+    }
+  }
+ 
 }

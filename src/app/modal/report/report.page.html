@@ -1,24 +1,78 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Reporte</ion-title>
-    <ion-buttons slot="end">
-      <ion-button (click)="closeModal()">
-        <ion-icon slot="icon-only" name="close"></ion-icon>
-      </ion-button>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
     </ion-buttons>
+    <ion-title>Reporte</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <!-- ngIf imgs -->
-  <ion-slides pager="true" *ngIf="report.imgs.length >1">
-    <ion-slide
-      *ngFor="let img of report.imgs"
-      class="image-slide"
-      style="background-image: url('{{img | imageReport:report.user._id}}');"
-    >
-    </ion-slide>
-  </ion-slides>
+  <ion-card>
+    <ion-item>
+      <ion-avatar slot="start">
+        <img src="/assets/avatars/profile.png" alt="" />
+      </ion-avatar>
+      <ion-label>
+        <h3>{{report.user.names}}</h3>
+        <p>{{report.created | date:'d MMM y, h:mm a'}}</p>
 
-  <ion-card-title>{{report.message}}</ion-card-title>
+      </ion-label>
+    </ion-item>
+    <!-- ngIf imgs -->
+
+    <ion-slides pager="true" *ngIf="report.imgs.length  >1">
+      <ion-slide
+        *ngFor="let img of report.imgs"
+        class="image-slide"
+        style="background-image: url('{{img | imageReport:report.user._id}}');"
+      >
+      </ion-slide>
+    </ion-slides>
+
+    <ion-slides
+      pager="false"
+      *ngIf="imgsR.length  ===1"
+      [options]="slideSoloOpts"
+    >
+      <ion-slide
+        class="image-slide"
+        style="background-image: url('{{report.imgs[0] | imageReport:report.user._id}}');"
+      >
+      </ion-slide>
+    </ion-slides>
+    <ion-card-header
+      ><ion-card-title>{{report.message}}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-card-subtitle><span class="text-bold">Tipo de reporte:</span> {{report.type.name}}</ion-card-subtitle>
+
+      <div *ngIf="report.coords">
+        <ion-card-subtitle><span class="text-bold">Ubicación:</span></ion-card-subtitle>
+        <app-mapa [(coords)]="report.coords" *ngIf="report.coords"></app-mapa>
+
+      </div>
+    </ion-card-content>
+    <ion-footer>
+      <ion-row>
+        <ion-col center text-center *ngIf="report.user.type !== 'USER'">
+          <ion-button color="light">
+            <ion-icon slot="start" name="eye"></ion-icon>
+            <p> Visto</p>
+          </ion-button>
+        </ion-col>
+
+        <ion-col center text-center *ngIf="report.user.type === 'USER'">
+          <ion-button color="light" disabled>
+            <p> No visto</p>
+          </ion-button>
+        </ion-col>
+  
+       
+      </ion-row>
+    </ion-footer>
+    
+  </ion-card>
+
+  <!-- Mapa -->
 </ion-content>

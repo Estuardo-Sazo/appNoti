@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable ,EventEmitter } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { RespuestaReport,Report } from '../interfaces/interfaces';
+import { RespuestaReport,Report, GetReport } from '../interfaces/interfaces';
 import { UsuarioService } from './usuario.service';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer/ngx';
 
@@ -12,6 +12,8 @@ const URL =environment.url;
 export class ReportsService {
 
   newReport = new EventEmitter<Report>();
+ 
+
   constructor(
     private http: HttpClient,
     private usuarioService: UsuarioService,
@@ -26,6 +28,14 @@ export class ReportsService {
     });
    return this.http.get<RespuestaReport>(`${URL}/reports/`,{ headers });
   }
+
+  getReport(id){
+    const headers = new HttpHeaders({
+      'x-token': this.usuarioService.token
+    });
+   return this.http.get<GetReport>(`${URL}/reports/${id}`,{ headers });
+  }
+
 
   createReport(report) {
     const headers = new HttpHeaders({
