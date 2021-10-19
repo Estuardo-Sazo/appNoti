@@ -17,7 +17,8 @@ export class Tab2Page {
   post = {
     message: '',
     coords: null,
-    posicion: false
+    posicion: false,
+    likes:[]
   };
 
   constructor(private postsService: PostsService,
@@ -32,7 +33,9 @@ export class Tab2Page {
     this.post ={
       message: '',
       coords: null,
-      posicion: false
+      posicion: false,
+      likes:[]
+
     };
 
     this.tempImages=[];

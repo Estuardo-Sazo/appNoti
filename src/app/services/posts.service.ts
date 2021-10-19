@@ -61,6 +61,35 @@ export class PostsService {
     }).catch(err => {
       console.log('Error de carga: ', err);
 
+    });   
+  }
+  like(postId){
+
+    const headers = new HttpHeaders({
+      'x-token': this.usuarioService.token
+    });
+    return new Promise(resolve => {
+
+      this.http.get(`${URL}/posts/${postId}/like`, { headers })
+        .subscribe(resp => {
+          console.log(resp);          
+          resolve(true);
+        });
+    });
+  }
+
+  dislike(postId){
+
+    const headers = new HttpHeaders({
+      'x-token': this.usuarioService.token
+    });
+    return new Promise(resolve => {
+
+      this.http.get(`${URL}/posts/${postId}/dislike`, { headers })
+        .subscribe(resp => {
+          console.log(resp);          
+          resolve(true);
+        });
     });
   }
 }

@@ -1,7 +1,7 @@
 <ion-card class="post">
   <ion-item>
     <ion-avatar slot="start">
-      <img src="/assets/avatars/{{post.user.image}}" alt="">
+      <img src="{{url}}/user/image/{{post.user._id}}/{{post.user.image}}" alt="">
     </ion-avatar>
     <ion-label>
       <h3>{{post.user.names}} {{post.user.surnames}}</h3>
@@ -24,21 +24,28 @@
 
   </ion-slides>
   <ion-card-header>
-    <ion-card-subtitle text-wrap> {{post.message}}
+    <ion-card-subtitle text-wrap> {{post.message}} 
     </ion-card-subtitle>
   </ion-card-header>
 
   <ion-footer>
     <ion-row>
-      <ion-col center text-center>
-        <ion-button color="light">
+      <ion-col center text-center *ngIf="!liked">
+        <ion-button size="small"  color="light" (click)="like(post._id)">
+          <ion-icon slot="start" name="thumbs-up"></ion-icon>
+          <p> Me gusta</p>
+        </ion-button>
+      </ion-col>
+
+      <ion-col center text-center *ngIf="liked">
+        <ion-button size="small"  color="primary" (click)="dislike(post._id)">
           <ion-icon slot="start" name="thumbs-up"></ion-icon>
           <p> Me gusta</p>
         </ion-button>
       </ion-col>
 
       <ion-col>
-        <ion-button color="light" disabled>0 me gustas</ion-button>
+        <ion-button size="small" color="light" disabled>{{likes}} me gustas</ion-button>
       </ion-col>
 
     </ion-row>

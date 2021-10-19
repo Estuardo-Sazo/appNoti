@@ -11,10 +11,10 @@
   <ion-card>
     <ion-item>
       <ion-avatar slot="start">
-        <img src="/assets/avatars/profile.png" alt="" />
+        <img src="{{url}}/user/image/{{report.user._id}}/{{report.user.image}}" alt="" />
       </ion-avatar>
       <ion-label>
-        <h3>{{report.user.names}}</h3>
+        <h3>{{report.user.names}} {{report.user.surnames}}</h3>
         <p>{{report.created | date:'d MMM y, h:mm a'}}</p>
 
       </ion-label>
@@ -64,6 +64,8 @@
 
         <ion-col center text-center *ngIf="report.user.type === 'USER'">
           <ion-button color="light" disabled>
+            <ion-icon slot="start" name="eye"></ion-icon>
+
             <p> No visto</p>
           </ion-button>
         </ion-col>

@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Report, Usuario } from 'src/app/interfaces/interfaces';
 import { ReportsService } from 'src/app/services/reports.service';
-
+import { environment } from 'src/environments/environment';
+const URL = environment.url;
 @Component({
   selector: 'app-report',
   templateUrl: './report.page.html',
@@ -21,7 +22,7 @@ export class ReportPage implements OnInit {
     allowSlideNext:false,
     allowSlidePrev:false
   }
-
+  url:string=URL;
   constructor( private reportsService: ReportsService,
     private router: ActivatedRoute,) {
 

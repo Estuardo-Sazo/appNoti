@@ -42,8 +42,8 @@ export class Tab4Page implements OnInit {
   }
 
   addReport() {
-   // this.router.navigate(['/newreport/']);
-    this.router.navigateByUrl('/newreport/');
+   this.router.navigate(['/newreport/']);
+   // this.router.navigateByUrl('/newreport/');
 
   }
 

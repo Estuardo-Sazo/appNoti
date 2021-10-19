@@ -26,9 +26,10 @@ export interface RespuestaPosts {
   export interface Post {
     imgs?: string[];
     _id?: string;
-    mensaje?: string;
+    message?: string;
+    likes:string[];
     coords?: string;
-    usuario?: Usuario;
+    user?: Usuario;
     created?: string;
   }
   

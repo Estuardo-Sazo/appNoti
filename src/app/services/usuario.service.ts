@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { Usuario } from '../interfaces/interfaces';
 import { NavController } from '@ionic/angular';
 import { UiServiceService } from './ui-service.service';
+import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer/ngx';
 
 const URL = environment.url;
 
@@ -13,11 +14,13 @@ const URL = environment.url;
 })
 export class UsuarioService {
   token: string = null;
+  img: string='';
   private usuario: Usuario = {};
 
   constructor(private http: HttpClient,
     private storage: Storage,
-    private navCtrl: NavController
+    private navCtrl: NavController,
+    private fileTransfer: FileTransfer
 
   ) { }
 
@@ -159,5 +162,34 @@ export class UsuarioService {
         });
 
     });
+  }
+
+  subirImagen(img: string):Promise<any>  {
+    const options: FileUploadOptions={
+      fileKey:'image',
+      headers: {
+        'x-token': this.token
+      }
+    };
+    const fileTransfer: FileTransferObject = this.fileTransfer.create();
+    return new Promise((resolve, reject) => {
+
+
+     fileTransfer.upload(img, `${URL}/user/upload`, options).then(data => {
+      console.log('rsp API:',data.response); 
+      
+      this.img=data.response;
+      resolve(true);
+    }).catch(err => {
+      console.log('Error de carga: ', err);
+      resolve(false);
+    });
+
+  });
+
+  }
+
+  getURL(userId:String, img:String){
+    return `${URL}/user/image/${userId}/${img}`;
   }
 }
