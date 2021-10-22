@@ -38,14 +38,14 @@
       </ion-col>
 
       <ion-col center text-center *ngIf="liked">
-        <ion-button size="small"  color="primary" (click)="dislike(post._id)">
+        <ion-button size="small"  color="primary" (click)="dislike(post._id)" fill="clear">
           <ion-icon slot="start" name="thumbs-up"></ion-icon>
           <p> Me gusta</p>
         </ion-button>
       </ion-col>
 
       <ion-col>
-        <ion-button size="small" color="light" disabled>{{likes}} me gustas</ion-button>
+        <ion-button  size="small" color="light" disabled>{{likes}} me gustas</ion-button>
       </ion-col>
 
     </ion-row>

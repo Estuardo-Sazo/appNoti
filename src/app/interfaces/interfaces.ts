@@ -11,6 +11,12 @@ export interface RespuestaPosts {
     reports: Report[];
   }
 
+  export interface RespuestaComments {
+    ok: boolean;
+    comments: Comment[];
+  }
+
+
   export interface RespuestaTypeReport {
     ok: boolean;
     typeReports: TypeReport[];
@@ -21,6 +27,14 @@ export interface RespuestaPosts {
     report: Report;
   }
   
+  export interface Comment{
+    _id?: string;
+    created?: string;
+    comment: string;
+    user?: Usuario;
+    status?: string;
+    reference: string;
+  }
   
   
   export interface Post {

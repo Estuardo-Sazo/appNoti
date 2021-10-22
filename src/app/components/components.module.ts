@@ -6,6 +6,8 @@ import { IonicModule } from '@ionic/angular';
 import { AvatarSelectorComponent } from './avatar-selector/avatar-selector.component';
 import { MapaComponent } from './mapa/mapa.component';
 import { PipesModule } from '../pipes/pipes.module';
+import { CommentComponent } from './comment/comment.component';
+import { CommentsComponent } from './comments/comments.component';
 
 
 
@@ -15,11 +17,15 @@ import { PipesModule } from '../pipes/pipes.module';
     PostsComponent,
     AvatarSelectorComponent,
     MapaComponent,
+    CommentComponent,
+    CommentsComponent
+    
   ],
   exports:[
     PostsComponent,
     AvatarSelectorComponent,
     MapaComponent,
+    CommentsComponent
   ],
   imports: [
     CommonModule,

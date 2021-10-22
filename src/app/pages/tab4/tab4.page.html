@@ -9,21 +9,20 @@
    <ion-refresher slot="fixed" (ionRefresh)="recargar($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
+
   
   <ion-list>
-    <ion-list-header>
+        <ion-list-header>
       Mis reportes
-    </ion-list-header>
-
-    <ion-item *ngFor="let report of reports">      
-      <ion-label>
-        <h2>{{report.type['name']}}</h2>
-        <h3>{{report.created | date:'d MMM y, h:mm a'}}</h3>
-        <p>{{report.message}}</p>
-      </ion-label>
-      <button ion-button clear item-end (click)="reporView(report)" expand="full">Ver</button>
-
-    </ion-item>
+    </ion-list-header>    
+      <ion-item *ngFor="let report of reports" (click)="reporView(report)"  detail="true">
+          <ion-label>
+            <h2>{{report.type['name']}}</h2>
+            <h3 class="handle">{{report.created | date:'d MMM y, h:mm a'}}</h3>
+            <p>{{report.message}}</p>
+            <p> <ion-icon  slot="start" name="chatbubbles"></ion-icon> 0 Comentarios</p>
+          </ion-label>            
+      </ion-item>  
   </ion-list>
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="addReport()"> 

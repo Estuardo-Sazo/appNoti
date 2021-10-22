@@ -55,26 +55,20 @@
     </ion-card-content>
     <ion-footer>
       <ion-row>
-        <ion-col center text-center *ngIf="report.user.type !== 'USER'">
-          <ion-button color="light">
-            <ion-icon slot="start" name="eye"></ion-icon>
-            <p> Visto</p>
+        <ion-col center text-center>
+          <ion-button color="primary" (click)="openModal()">
+            <ion-icon slot="start" name="chatbubbles"></ion-icon>
+            <p> Comentar</p>
           </ion-button>
-        </ion-col>
-
-        <ion-col center text-center *ngIf="report.user.type === 'USER'">
-          <ion-button color="light" disabled>
-            <ion-icon slot="start" name="eye"></ion-icon>
-
-            <p> No visto</p>
-          </ion-button>
-        </ion-col>
-  
-       
+        </ion-col>       
       </ion-row>
+      
     </ion-footer>
     
   </ion-card>
+  <!-- Commnents -->
+  <app-comments [comments]="comments"></app-comments>
+  <!-- End comments -->
 
   <!-- Mapa -->
 </ion-content>
