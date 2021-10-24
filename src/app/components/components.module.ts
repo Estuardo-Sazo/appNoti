@@ -9,6 +9,9 @@ import { PipesModule } from '../pipes/pipes.module';
 import { CommentComponent } from './comment/comment.component';
 import { CommentsComponent } from './comments/comments.component';
 import { ItemReportComponent } from './item-report/item-report.component';
+import { InputComponent } from './input/input.component';
+import { ButtonComponent } from './button/button.component';
+import { IconButtonComponent } from './icon-button/icon-button.component';
 
 
 
@@ -20,7 +23,10 @@ import { ItemReportComponent } from './item-report/item-report.component';
     MapaComponent,
     CommentComponent,
     CommentsComponent,
-    ItemReportComponent
+    ItemReportComponent,
+    InputComponent,
+    ButtonComponent,
+    IconButtonComponent
     
   ],
   exports:[
@@ -28,7 +34,10 @@ import { ItemReportComponent } from './item-report/item-report.component';
     AvatarSelectorComponent,
     MapaComponent,
     CommentsComponent,
-    ItemReportComponent
+    ItemReportComponent,
+    InputComponent,
+    ButtonComponent,
+    IconButtonComponent
   ],
   imports: [
     CommonModule,

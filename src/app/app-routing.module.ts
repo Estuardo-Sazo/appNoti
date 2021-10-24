@@ -36,6 +36,14 @@ const routes: Routes = [
   {
     path: 'error-network',
     loadChildren: () => import('./pages/error-network/error-network.module').then( m => m.ErrorNetworkPageModule)
+  },
+  {
+    path: 'login-i',
+    loadChildren: () => import('./pages/login-i/login-i.module').then( m => m.LoginIPageModule)
+  },
+  {
+    path: 'register',
+    loadChildren: () => import('./pages/register/register.module').then( m => m.RegisterPageModule)
   }
 
 

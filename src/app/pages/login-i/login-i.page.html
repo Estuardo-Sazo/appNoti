@@ -1,0 +1,25 @@
+<ion-content class="ion-padding">
+  <h1>Comunidad App</h1>
+  <h3>¡Inicia sesión para continuar!</h3>
+  <form (ngSubmit)="login(fLogin)" #fLogin="ngForm">
+    <div class="form-field">
+      <label [ngClass]="focused ? 'label-focused' : ''">CUI o Correo</label>
+      <input type="text" name="email" [(ngModel)]="user.email" (focus)="focused = true" (blur)="onBlur($event)"
+        required />
+    </div>
+    <div class="form-field">
+      <label [ngClass]="focused ? 'label-focused' : ''">Contraseña</label>
+      <input type="password" name="password" [(ngModel)]="user.password" (focus)="focused = true"
+        (blur)="onBlur($event)" required (keyup.enter)="login(fLogin)" />
+    </div>
+
+    <a routerLink="#" class="forgot-password-link">¿Has olvidado tu contraseña?</a>
+
+    <app-button label="Ingresar" type="submit"></app-button>
+    <app-icon-button icon="logo-google" label="TS"></app-icon-button>
+  </form>
+
+  <p class="footer-text">
+    Soy un nuevo usuario,<a routerLink="/register"> Registrarme</a>
+  </p>
+</ion-content>

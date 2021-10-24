@@ -52,7 +52,7 @@ export class UsuarioService {
 
     this.storage.clear();
 
-    this.navCtrl.navigateRoot('/login', { animated:true});
+    this.navCtrl.navigateRoot('/login-i', { animated:true});
   }
 
   registro(usuario: Usuario) {
@@ -137,7 +137,7 @@ export class UsuarioService {
             resolve(true);
 
           } else {
-            this.navCtrl.navigateRoot('/login');
+            this.navCtrl.navigateRoot('/login-i');
 
             resolve(false);
           }
