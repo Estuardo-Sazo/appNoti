@@ -4,6 +4,15 @@
       <ion-back-button></ion-back-button>
     </ion-buttons>
     <ion-title>Reporte</ion-title>
+    <ion-buttons slot="end">
+      <ion-button        
+        color="danger"
+        *ngIf="report.user._id === userl._id" 
+        (click)="showConfirm(report._id)"
+      >
+      <ion-icon name="trash"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -14,6 +23,7 @@
         <img src="{{url}}/user/image/{{report.user._id}}/{{report.user.image}}" alt="" />
       </ion-avatar>
       <ion-label>
+        
         <h3>{{report.user.names}} {{report.user.surnames}}</h3>
         <p>{{report.created | date:'d MMM y, h:mm a'}}</p>
 

@@ -8,6 +8,7 @@ import { MapaComponent } from './mapa/mapa.component';
 import { PipesModule } from '../pipes/pipes.module';
 import { CommentComponent } from './comment/comment.component';
 import { CommentsComponent } from './comments/comments.component';
+import { ItemReportComponent } from './item-report/item-report.component';
 
 
 
@@ -18,14 +19,16 @@ import { CommentsComponent } from './comments/comments.component';
     AvatarSelectorComponent,
     MapaComponent,
     CommentComponent,
-    CommentsComponent
+    CommentsComponent,
+    ItemReportComponent
     
   ],
   exports:[
     PostsComponent,
     AvatarSelectorComponent,
     MapaComponent,
-    CommentsComponent
+    CommentsComponent,
+    ItemReportComponent
   ],
   imports: [
     CommonModule,

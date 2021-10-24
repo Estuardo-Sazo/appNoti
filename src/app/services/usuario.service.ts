@@ -141,6 +141,9 @@ export class UsuarioService {
 
             resolve(false);
           }
+        },(err: any)=>{
+          console.log('Error: ', err);
+          this.navCtrl.navigateRoot('/error-network');
         });
     });
   }

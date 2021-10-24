@@ -32,6 +32,10 @@ const routes: Routes = [
   },  {
     path: 'add-comment',
     loadChildren: () => import('./modal/add-comment/add-comment.module').then( m => m.AddCommentPageModule)
+  },
+  {
+    path: 'error-network',
+    loadChildren: () => import('./pages/error-network/error-network.module').then( m => m.ErrorNetworkPageModule)
   }
 
 

@@ -9,6 +9,7 @@ import { Tab4PageRoutingModule } from './tab4-routing.module';
 import { Tab4Page } from './tab4.page';
 import { ReportPage } from 'src/app/modal/report/report.page';
 import { PipesModule } from 'src/app/pipes/pipes.module';
+import { ComponentsModule } from 'src/app/components/components.module';
 
 @NgModule({
   imports: [
@@ -16,7 +17,9 @@ import { PipesModule } from 'src/app/pipes/pipes.module';
     FormsModule,
     IonicModule,
     PipesModule,
-    Tab4PageRoutingModule
+    Tab4PageRoutingModule,
+    ComponentsModule,
+    
   ],
   declarations: [Tab4Page],
   

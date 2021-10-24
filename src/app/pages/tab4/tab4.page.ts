@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { Report } from 'src/app/interfaces/interfaces';
 import { ReportPage } from 'src/app/modal/report/report.page';
+import { CommentsService } from 'src/app/services/comments.service';
 import { ReportsService } from 'src/app/services/reports.service';
 
 @Component({
@@ -13,16 +14,23 @@ import { ReportsService } from 'src/app/services/reports.service';
 export class Tab4Page implements OnInit {
   reports: Report[] = [];
   habilitado = true;
+  
   constructor(
     private reportsService: ReportsService,
     private router: Router,
-    private modalController: ModalController
+    private modalController: ModalController,
+    private commentsService:CommentsService
   ) {}
 
   ngOnInit() {
+    this.reportsService.pagina=0;
     this.siguientes();
     this.reportsService.newReport.subscribe((report) => {
       this.reports.unshift(report);
+    });
+
+    this.reportsService.delReport.subscribe((rep)=>{
+      this.reports= this.reports.filter(r=> r._id !== rep._id);
     });
   }
 
@@ -54,7 +62,7 @@ export class Tab4Page implements OnInit {
   }
 
   siguientes(event?, pull: boolean = false) {
-    this.reportsService.getReports().subscribe((resp) => {
+    this.reportsService.getReports(pull).subscribe((resp) => {
       console.log(resp);
       this.reports.push(...resp.reports);
 
@@ -68,4 +76,6 @@ export class Tab4Page implements OnInit {
       }
     });
   }
+
+ 
 }

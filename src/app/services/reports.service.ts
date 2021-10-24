@@ -12,8 +12,10 @@ const URL =environment.url;
 export class ReportsService {
 
   newReport = new EventEmitter<Report>();
- 
+  delReport = new EventEmitter<Report>();
 
+ 
+  pagina=0;
   constructor(
     private http: HttpClient,
     private usuarioService: UsuarioService,
@@ -22,11 +24,16 @@ export class ReportsService {
 
   ) { }
 
-  getReports(){
+  getReports(pull: boolean=false){
+
+    if(pull){
+      this.pagina=0;
+    }
+    this.pagina++;
     const headers = new HttpHeaders({
       'x-token': this.usuarioService.token
     });
-   return this.http.get<RespuestaReport>(`${URL}/reports/`,{ headers });
+   return this.http.get<RespuestaReport>(`${URL}/reports/?pagina=${this.pagina}`,{ headers });
   }
 
   getReport(id){
@@ -49,6 +56,29 @@ export class ReportsService {
           console.log(resp);
           if (resp['ok'] == true) {
             this.newReport.emit(resp['report']);
+            resolve(true);
+
+          }else{
+          resolve(false);
+
+          }
+        });
+    });
+
+  }
+
+  deleteReport(id) {
+    const headers = new HttpHeaders({
+      'x-token': this.usuarioService.token
+    });
+
+    return new Promise(resolve => {
+
+      this.http.post(`${URL}/reports/delete/${id}`, {},{ headers })
+        .subscribe(resp => {
+          console.log(resp);
+          if (resp['ok'] == true) {
+            this.delReport.emit(resp['report']);
             resolve(true);
 
           }else{

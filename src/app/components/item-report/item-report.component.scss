@@ -1,0 +1,14 @@
+
+
+.title{
+    font-weight: 600;
+    width: 90%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.handle{
+    padding-left: 4px;
+    color: var(--ion-color-medium);
+}

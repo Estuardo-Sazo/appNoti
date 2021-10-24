@@ -1,0 +1,11 @@
+<div class="container">
+  <div class="wrapper">
+    <h3>Error de conexin con el servidor</h3>
+    <p>Revisa tu conexion a internet y vuelve a intentarlo.</p>
+    <ion-button (click)="reconnect()"  color="tertiary" shape="round">
+      Volver a intentar
+    </ion-button><br>
+    <ion-spinner name="lines-small" *ngIf="cargar"> </ion-spinner>
+
+  </div>
+</div>

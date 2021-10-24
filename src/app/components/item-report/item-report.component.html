@@ -1,0 +1,7 @@
+<ion-label>
+  <h2 class="title">{{report.message}} </h2>
+  <h3 class="handle">Fecha: {{report.created | date:'d MMM y, h:mm a'}}</h3>
+  <p>Tipo: {{report.type['name']}}</p>
+  <p *ngIf="user.type !=='USER'"> Por: {{report.user['names']}} {{report.user['surnames']}}</p>
+  <p> <ion-icon  slot="start" name="chatbubbles"></ion-icon> {{comments.length}} Comentarios</p>
+</ion-label>  

@@ -9,6 +9,8 @@ const URL =environment.url;
 })
 export class CommentsService {
   newComment = new EventEmitter<Comment>();
+  delComment = new EventEmitter<Comment>();
+
   constructor(private http: HttpClient,
     private usuarioService: UsuarioService,) { }
 
@@ -36,6 +38,29 @@ createReport(comment, ref) {
 
         }else{
         resolve(false);
+        }
+      });
+  });
+
+}
+
+deleteComment(id) {
+  const headers = new HttpHeaders({
+    'x-token': this.usuarioService.token
+  });
+
+  return new Promise(resolve => {
+
+    this.http.post(`${URL}/comments/delete/${id}`, {},{ headers })
+      .subscribe(resp => {
+        console.log(resp);
+        if (resp['ok'] == true) {
+          this.delComment.emit(resp['comment']);
+          resolve(true);
+
+        }else{
+        resolve(false);
+
         }
       });
   });

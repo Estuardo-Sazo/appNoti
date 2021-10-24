@@ -16,14 +16,16 @@
       Mis reportes
     </ion-list-header>    
       <ion-item *ngFor="let report of reports" (click)="reporView(report)"  detail="true">
-          <ion-label>
-            <h2>{{report.type['name']}}</h2>
-            <h3 class="handle">{{report.created | date:'d MMM y, h:mm a'}}</h3>
-            <p>{{report.message}}</p>
-            <p> <ion-icon  slot="start" name="chatbubbles"></ion-icon> 0 Comentarios</p>
-          </ion-label>            
+          <app-item-report [report]="report"></app-item-report>     
       </ion-item>  
   </ion-list>
+
+   <!-- Infinte Scrolo -->
+
+   <ion-infinite-scroll [disabled]="!habilitado" threshold="150px" (ionInfinite)="siguientes($event)">
+    <ion-infinite-scroll-content>
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="addReport()"> 
     <ion-fab-button>
