@@ -27,7 +27,14 @@ export class Tab3Page  implements OnInit{
   ngOnInit() {
     this.user = this.usuarioService.getUsuario();
     this.imageProfile=this.usuarioService.getURL(this.user._id,this.user.image);
+    this.usuarioService.newURL.subscribe((url)=>{
+      console.log('NEW URL IMAGE PROFILE', url);
+      this.user.image=url;
+      this.imageProfile=this.usuarioService.getURL(this.user._id,this.user.image);
 
+      this.uiService.presentToast('Actualizanndo Foto de perfil');
+      this.usuarioService.actualizarUsuario(this.user);
+    });
     console.log(this.user);
     
   }
@@ -67,12 +74,9 @@ export class Tab3Page  implements OnInit{
       // imageData is either a base64 encoded string or a file URI
       // If it's base64 (DATA_URL):
       //const img = window.Ionic.WebView.convertFileSrc(imageData);
-      const resp=this.usuarioService.subirImagen(imageData);
+      const resp= this.usuarioService.subirImagen(imageData);
       if(resp){
-        this.uiService.presentToast('Actualizanndo Foto de perfil');
-        this.user.image=this.usuarioService.img;
-        console.log('new: ',this.user.image);       
-        this.usuarioService.actualizarUsuario(this.user);
+       
 
       }else{
         this.uiService.presentToast('Error al acualizar Foto de perfil');

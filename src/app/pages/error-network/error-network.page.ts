@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { UsuarioService } from 'src/app/services/usuario.service';
 
 @Component({
   selector: 'app-error-network',
@@ -8,7 +9,9 @@ import { Router } from '@angular/router';
 })
 export class ErrorNetworkPage implements OnInit {
 cargar=false;
-  constructor(private router: Router) { }
+  constructor(private router: Router,
+    private usuarioService: UsuarioService,
+    ) { }
 
   ngOnInit() {
   }
@@ -19,4 +22,8 @@ cargar=false;
     this.router.navigateByUrl('/main/tabs/tab1');
 
   }
+  logout() {
+    this.usuarioService.logout();
+
+   }
 }
