@@ -34,23 +34,22 @@ export class ReportPage implements OnInit {
   constructor( private reportsService: ReportsService,
     private router: ActivatedRoute,
     public modalController: ModalController,
-    private commentsService:CommentsService,
+    private commentsService: CommentsService,
     private usuarioService: UsuarioService,
     public alertController: AlertController,
     private navCtrl: NavController,
-    private  uiService:UiServiceService
+    private  uiService: UiServiceService
 
     ) {
 
     this.reportId = this.router.snapshot.paramMap.get('idReport');
-    
+
   }
   async ngOnInit() {
-    
-      this.reportsService.getReport(this.reportId).subscribe((data)=>{      
+    this.reportsService.getReport(this.reportId).subscribe((data) => {
       this.report=data.report[0];
       this.user=this.report.user;
-      this.imgsR.push(...this.report.imgs);     
+      this.imgsR.push(...this.report.imgs);
 
       });
       this.userl = this.usuarioService.getUsuario();
@@ -58,18 +57,16 @@ export class ReportPage implements OnInit {
         this.comments.push(...resp.comments);
         console.log(this.comments);
       });
-   
+
       this.commentsService.newComment.subscribe((comment)=>{
         this.comments.push(comment);
       });
 
       this.commentsService.delComment.subscribe((rep: any)=>{
         console.log(rep);
-        
+
         this.comments= this.comments.filter(c=> c._id !== rep._id);
       });
-     
-
 
   }
 
@@ -88,17 +85,16 @@ export class ReportPage implements OnInit {
       header: 'Eliminar Reporte',
       message: '¿Esta seguro de eliminar este reporte?',
       buttons: [
-        
+
         {
           text: 'Eliminar',
           handler: async () => {
             const st= await this.reportsService.deleteReport(id);
             console.log(st);
-            
             if(st){
               this.navCtrl.navigateRoot('/main/tabs/tab4');
             }else{
-              this.uiService.alertaInfo("Error al eliminar, vuelve  a intentarlo")
+              this.uiService.alertaInfo('Error al eliminar, vuelve  a intentarlo');
 
             }
           }
@@ -114,5 +110,4 @@ export class ReportPage implements OnInit {
       res.present();
     });
   }
- 
 }
