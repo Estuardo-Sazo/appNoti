@@ -15,22 +15,22 @@ const URL = environment.url;
   styleUrls: ['./report.page.scss'],
 })
 export class ReportPage implements OnInit {
-  user:Usuario={};
-  userl:Usuario={};
+  user: Usuario={};
+  userl: Usuario={};
 
   comments= [];
-  report:Report={
+  report: Report={
     imgs:[],
     user:this.user,
     type:{}
   };
-  imgsR:String[]=[];
+  imgsR: string[]=[];
   reportId;
-  slideSoloOpts={
-    allowSlideNext:false,
-    allowSlidePrev:false
-  }
-  url:string=URL;
+  slideSoloOpts = {
+    allowSlideNext: false,
+    allowSlidePrev: false
+  };
+  url: string=URL;
   constructor( private reportsService: ReportsService,
     private router: ActivatedRoute,
     public modalController: ModalController,

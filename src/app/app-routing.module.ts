@@ -29,7 +29,8 @@ const routes: Routes = [
   {
     path: 'report/:idReport',
     loadChildren: () => import('./modal/report/report.module').then( m => m.ReportPageModule)
-  },  {
+  },
+  {
     path: 'add-comment',
     loadChildren: () => import('./modal/add-comment/add-comment.module').then( m => m.AddCommentPageModule)
   },

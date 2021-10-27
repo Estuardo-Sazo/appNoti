@@ -8,7 +8,7 @@ import { UsuarioService } from '../services/usuario.service';
 })
 export class UsuarioGuard implements  CanLoad{
 
-  constructor(private usuarioService:UsuarioService){}
+  constructor(private usuarioService: UsuarioService){}
 
 
   canLoad(): Observable<boolean> | Promise<boolean>  | boolean {

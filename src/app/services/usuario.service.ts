@@ -135,11 +135,11 @@ export class UsuarioService {
 
             resolve(false);
           }
-        },
+        }/* ,
         (err: any) => {
           console.log('Error: ', err);
           this.navCtrl.navigateRoot('/error-network');
-        }
+        } */
       );
     });
   }
@@ -162,7 +162,7 @@ export class UsuarioService {
     });
   }
 
-  subirImagen(img: string): Promise<String> {
+  subirImagen(img: string): Promise<string> {
     const options: FileUploadOptions = {
       fileKey: 'image',
       headers: {

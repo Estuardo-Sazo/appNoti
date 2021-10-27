@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AlertController, NavController } from '@ionic/angular';
-import { Usuario } from 'src/app/interfaces/interfaces';
+import { Usuario,Comment } from 'src/app/interfaces/interfaces';
 import { CommentsService } from 'src/app/services/comments.service';
 import { UiServiceService } from 'src/app/services/ui-service.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
@@ -14,15 +14,15 @@ const URL = environment.url;
 })
 export class CommentComponent implements OnInit {
   @Input() comment: Comment[];
-  url:string=URL;
-  user:Usuario={};
+  url: string=URL;
+  user: Usuario={};
 
   constructor(
 
     private usuarioService: UsuarioService,
-    private commentsService:CommentsService,
+    private commentsService: CommentsService,
     public alertController: AlertController,
-    private  uiService:UiServiceService,
+    private  uiService: UiServiceService,
     private navCtrl: NavController,
 
 
@@ -32,7 +32,6 @@ export class CommentComponent implements OnInit {
   ngOnInit() {
     console.log(this.comment);
     this.user = this.usuarioService.getUsuario();
-    
   }
 
   showConfirm(id) {
@@ -40,18 +39,17 @@ export class CommentComponent implements OnInit {
       header: 'Eliminar Reporte',
       message: '¿Esta seguro de eliminar este reporte?',
       buttons: [
-        
+
         {
           text: 'Eliminar',
           handler: async () => {
             const st= await this.commentsService.deleteComment(id);
-           
+
             if(st){
-              this.uiService.alertaInfo("Eliminado Correctamente!")
+              this.uiService.alertaInfo('Eliminado Correctamente!');
 
             }else{
-              this.uiService.alertaInfo("Error al eliminar, vuelve  a intentarlo")
-
+              this.uiService.alertaInfo('Error al eliminar, vuelve  a intentarlo');
             }
           }
         },
