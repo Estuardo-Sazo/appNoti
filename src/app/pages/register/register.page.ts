@@ -18,7 +18,7 @@ export class RegisterPage implements OnInit {
     surnames:"",
     cui:"",
     phone:"",
-  
+    confirm:"",
   };
   focused: boolean;
 
@@ -45,17 +45,30 @@ export class RegisterPage implements OnInit {
       //Completar los campos
       this.uiService.alertaInfo("Campos incompletos.") 
       return;}
-
-    const valido= await this.usuarioService.registro(this.register);
-
-    if(valido){
-      //Navegar al tab 
-        this.navCtrl.navigateRoot('/main/tabs/tab1',{animated:true});
-    }else{
-      //mostrar alerta de usuario incorrecto
-      this.uiService.alertaInfo("Error en los datos.")
+      console.log(this.register.cui.toString().length);
       
-    }
+      if(this.register.cui.toString().length!=13 ){
+        this.uiService.alertaInfo("DPI invalido") 
+        return;}
+
+      if(this.register.password == this.register.confirm){
+        
+
+        const valido= await this.usuarioService.registro(this.register);
+
+            if(valido){
+              //Navegar al tab 
+                this.navCtrl.navigateRoot('/main/tabs/tab1',{animated:true});
+            }else{
+              //mostrar alerta de usuario incorrecto
+              this.uiService.alertaInfo("Error en los datos.")
+              
+            }
+      }else{
+        //mostrar alerta de usuario incorrecto
+        this.uiService.alertaInfo("Contraseñas no coinsiden.");
+      }
+    
   }
 
 

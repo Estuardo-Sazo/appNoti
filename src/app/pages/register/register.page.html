@@ -3,35 +3,41 @@
   <h3>¡Regístrate para empezar!</h3>
 
   <form (ngSubmit)="registr(fRegistro)" #fRegistro="ngForm">
+    
     <div class="form-field">
-      <label [ngClass]="focused ? 'label-focused' : ''">Nombres </label>
+      <label [ngClass]="focused ? 'label-focused' : ''">* Nombres </label>
       <input type="text" name="names" [(ngModel)]="register.names" (focus)="focused = true" (blur)="onBlur($event)"
         required />
     </div>
     <div class="form-field">
-      <label [ngClass]="focused ? 'label-focused' : ''">Apellidos </label>
+      <label [ngClass]="focused ? 'label-focused' : ''">* Apellidos </label>
       <input type="text" name="surnames" [(ngModel)]="register.surnames" (focus)="focused = true" (blur)="onBlur($event)"
         required />
     </div>
     <div class="form-field">
       <label [ngClass]="focused ? 'label-focused' : ''">DPI </label>
-      <input type="number" name="cui" [(ngModel)]="register.cui" (focus)="focused = true" (blur)="onBlur($event)"
-        required />
+      <input type="number" required minlength="13" maxlength="13" name="cui" [(ngModel)]="register.cui" (focus)="focused = true" (blur)="onBlur($event)"
+         />
     </div>
     <div class="form-field">
       <label [ngClass]="focused ? 'label-focused' : ''">Teléfono </label>
-      <input type="tel" name="phone" [(ngModel)]="register.phone" (focus)="focused = true" (blur)="onBlur($event)"
-        required />
+      <input type="tel" required name="phone" [(ngModel)]="register.phone" (focus)="focused = true" (blur)="onBlur($event)"
+         />
     </div>
     <div class="form-field">
-      <label [ngClass]="focused ? 'label-focused' : ''">Correo </label>
+      <label [ngClass]="focused ? 'label-focused' : ''">* Correo </label>
       <input type="email" name="email" [(ngModel)]="register.email" (focus)="focused = true" (blur)="onBlur($event)"
         required />
     </div>
     <div class="form-field">
-      <label [ngClass]="focused ? 'label-focused' : ''">Contraseña</label>
+      <label [ngClass]="focused ? 'label-focused' : ''">* Contraseña</label>
       <input type="password" name="password" [(ngModel)]="register.password" (focus)="focused = true"
-        (blur)="onBlur($event)" required (keyup.enter)="login(fLogin)" />
+        (blur)="onBlur($event)" required autocomplete="on" />
+    </div>
+    <div class="form-field">
+      <label [ngClass]="focused ? 'label-focused' : ''">* Confirmar Contraseña</label>
+      <input type="password" name="confirm" [(ngModel)]="register.confirm" (focus)="focused = true"
+        (blur)="onBlur($event)" required autocomplete="on" (keyup.enter)="login(fLogin)" />
     </div>
 
     <app-button label="Registrarme" type="submit"></app-button>

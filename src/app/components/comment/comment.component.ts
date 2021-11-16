@@ -12,10 +12,13 @@ const URL = environment.url;
   templateUrl: './comment.component.html',
   styleUrls: ['./comment.component.scss'],
 })
+
+
 export class CommentComponent implements OnInit {
   @Input() comment: Comment[];
   url: string=URL;
   user: Usuario={};
+  imageProfile:String;
 
   constructor(
 
@@ -32,6 +35,8 @@ export class CommentComponent implements OnInit {
   ngOnInit() {
     console.log(this.comment);
     this.user = this.usuarioService.getUsuario();
+    this.imageProfile=this.usuarioService.getURL(this.user._id,this.user.image);
+
   }
 
   showConfirm(id) {

@@ -188,6 +188,12 @@ export class UsuarioService {
   }
 
   getURL(userId: String, img: String) {
-    return `${URL}/user/image/${userId}/${img}`;
+    if(img=='profile.png'){
+      return './assets/no-image.png';
+    }else{
+
+      return `${URL}/user/image/${userId}/${img}`;
+    }
+    
   }
 }

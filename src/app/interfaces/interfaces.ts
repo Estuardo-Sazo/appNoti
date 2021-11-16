@@ -66,6 +66,8 @@ export interface RespuestaPosts {
     cui?: string;
     phone?: string;
     password?:string;
+    confirm?:string;
+
   }
 
   export interface TypeReport {
