@@ -53,9 +53,14 @@ const routes: Routes = [
   {
     path: 'list-editor',
     loadChildren: () => import('./pages/list-editor/list-editor.module').then( m => m.ListEditorPageModule)
-  },  {
+  },
+  {
     path: 'search-user',
     loadChildren: () => import('./modal/search-user/search-user.module').then( m => m.SearchUserPageModule)
+  },
+  {
+    path: 'type-reports',
+    loadChildren: () => import('./pages/type-reports/type-reports.module').then( m => m.TypeReportsPageModule)
   }
 
 

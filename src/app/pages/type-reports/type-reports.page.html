@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Tipos de Reporte</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list *ngFor="let type of typesReport">
+    <ion-item lines="none">
+      <ion-card>
+        <ion-card-header>
+          <ion-item lines="none">
+            <ion-buttons slot="end">
+              <ion-button >
+                <ion-icon name="checkbox-outline"></ion-icon>
+              </ion-button>
+            </ion-buttons>
+            <ion-label>
+              <h3 class="text-bold">{{type.name}}</h3>
+              <p>{{type.status==='ACTIVE'?'Activo':'Inactivo'}}</p>
+            </ion-label>
+          </ion-item>
+        </ion-card-header>
+      </ion-card>
+    </ion-item>
+  </ion-list>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" > 
+    <ion-fab-button>
+      <ion-icon name="add-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

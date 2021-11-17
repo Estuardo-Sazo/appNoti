@@ -1,0 +1,15 @@
+ion-card {
+    display: flex;
+    flex-direction: column;
+    width: 100% !important;
+    max-width : 100% !important;    
+}
+
+ion-card-header{
+    padding: 0px;
+    margin: 0px;
+}
+
+.text-bold{
+    font-weight:bold;
+}

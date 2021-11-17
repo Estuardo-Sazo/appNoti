@@ -210,6 +210,7 @@ export class UsuarioService {
       'x-token': this.token
     });
 
+    console.log(search);
    return this.http.get<RespuestaUsers>(`${URL}/user/search/${search}`,{ headers });
   }
 }

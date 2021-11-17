@@ -28,4 +28,10 @@ export class SearchUserPage implements OnInit {
     });
   }
 
+  search(event) {
+    const search = event.detail.value;
+    this.usuarioService.getListUsersSearch(search).subscribe((resp) => {
+      console.log(resp);
+    });
+  }
 }
