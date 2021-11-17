@@ -2,7 +2,7 @@ import { EventEmitter, Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Storage } from '@ionic/storage';
 import { environment } from 'src/environments/environment';
-import { Usuario } from '../interfaces/interfaces';
+import { RespuestaPosts, RespuestaUsers, Usuario } from '../interfaces/interfaces';
 import { NavController } from '@ionic/angular';
 import { UiServiceService } from './ui-service.service';
 import {
@@ -195,5 +195,21 @@ export class UsuarioService {
       return `${URL}/user/image/${userId}/${img}`;
     }
     
+  }
+
+  getListUsers(type){
+    const headers = new HttpHeaders({
+      'x-token': this.token
+    });
+
+   return this.http.post<RespuestaUsers>(`${URL}/user/list/`,{type},{ headers });
+  }
+
+  getListUsersSearch(search){
+    const headers = new HttpHeaders({
+      'x-token': this.token
+    });
+
+   return this.http.get<RespuestaUsers>(`${URL}/user/search/${search}`,{ headers });
   }
 }

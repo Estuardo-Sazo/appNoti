@@ -12,6 +12,9 @@
     <ion-tab-button tab="tab4" >
       <ion-icon name="clipboard"></ion-icon>
     </ion-tab-button>
+    <ion-tab-button tab="tab5" *ngIf="usuario.type =='ADMIN'">
+      <ion-icon name="people"></ion-icon>
+    </ion-tab-button>
 
     <ion-tab-button tab="tab3">
       <ion-icon name="person"></ion-icon>

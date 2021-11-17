@@ -31,7 +31,6 @@ export class ReportPage implements OnInit {
     allowSlidePrev: false
   };
   url: string=URL;
-  imageProfile:String;
   constructor( private reportsService: ReportsService,
     private router: ActivatedRoute,
     public modalController: ModalController,
@@ -47,7 +46,6 @@ export class ReportPage implements OnInit {
 
   }
   async ngOnInit() {
-   
     this.reportsService.getReport(this.reportId).subscribe((data) => {
       this.report=data.report[0];
       this.user=this.report.user;
@@ -55,7 +53,6 @@ export class ReportPage implements OnInit {
 
       });
       this.userl = this.usuarioService.getUsuario();
-      this.imageProfile=this.usuarioService.getURL(this.userl._id,this.userl.image);
       this.commentsService.getComments(this.reportId).subscribe((resp)=>{
         this.comments.push(...resp.comments);
         console.log(this.comments);

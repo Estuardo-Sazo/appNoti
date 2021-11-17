@@ -1,0 +1,25 @@
+<ion-header [translucent]="true" no-border>
+  <ion-toolbar>
+    <ion-title class="ion-text-center"> Comunidad App </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-list-header> Administración </ion-list-header>
+    <ion-item lines="none" (click)="select(1)">
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>Adiminstradores</ion-card-title>
+        </ion-card-header>
+      </ion-card>
+    </ion-item>
+    <ion-item lines="none" (click)="select(2)">
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>Editores</ion-card-title>
+        </ion-card-header>
+      </ion-card>
+    </ion-item>
+  </ion-list>
+</ion-content>

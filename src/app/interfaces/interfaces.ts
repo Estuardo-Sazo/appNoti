@@ -5,6 +5,12 @@ export interface RespuestaPosts {
     posts: Post[];
   }
 
+
+  export interface RespuestaUsers {
+    ok: boolean;
+    users: Usuario[];
+  }
+
   export interface RespuestaReport {
     ok: boolean;
     pagina: number;

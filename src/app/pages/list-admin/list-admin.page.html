@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Administradores</ion-title>
+    
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list *ngFor="let user of users">
+    <ion-item lines="none" >
+      <ion-card>
+        <ion-card-header>
+          <ion-item lines="none">
+            <ion-avatar slot="start">
+              <img src="{{url}}/user/image/{{user._id}}/{{user.image}}" alt="" />
+            </ion-avatar>
+            <ion-buttons slot="end">
+              <ion-button        
+                color="danger"                 
+                (click)="delete(user._id)"          
+              >
+              <ion-icon name="trash"></ion-icon>
+            </ion-button>
+            </ion-buttons>
+            <ion-label>
+              <h3 class="text-bold">{{user.names}} {{user.surnames}}</h3>
+              <p>{{user.email}}</p>
+              <p>Tel. {{user.phone}}</p>      
+            </ion-label>
+          </ion-item>
+        </ion-card-header>
+      </ion-card>
+    </ion-item>
+    
+  </ion-list>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="presentModal()"> 
+    <ion-fab-button>
+      <ion-icon name="add-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>

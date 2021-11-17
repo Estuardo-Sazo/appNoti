@@ -18,11 +18,7 @@ const routes: Routes = [
     pathMatch:'full',
     redirectTo:'main/tabs/tab1'
   },
-  {
-    path: 'tab4',
-    loadChildren: () => import('./pages/tab4/tab4.module').then( m => m.Tab4PageModule)
-  },
-  {
+    {
     path: 'newreport',
     loadChildren: () => import('./pages/newreport/newreport.module').then( m => m.NewreportPageModule)
   },
@@ -45,7 +41,25 @@ const routes: Routes = [
   {
     path: 'register',
     loadChildren: () => import('./pages/register/register.module').then( m => m.RegisterPageModule)
+  },
+  {
+    path: 'tab5',
+    loadChildren: () => import('./pages/tab5/tab5.module').then( m => m.Tab5PageModule)
+  },
+  {
+    path: 'list-admin',
+    loadChildren: () => import('./pages/list-admin/list-admin.module').then( m => m.ListAdminPageModule)
+  },
+  {
+    path: 'list-editor',
+    loadChildren: () => import('./pages/list-editor/list-editor.module').then( m => m.ListEditorPageModule)
+  },  {
+    path: 'search-user',
+    loadChildren: () => import('./modal/search-user/search-user.module').then( m => m.SearchUserPageModule)
   }
+
+
+
 
 
 
