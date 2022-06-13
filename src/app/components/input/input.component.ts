@@ -9,13 +9,25 @@ export class InputComponent implements OnInit {
   @Input() label: string;
   @Input() type = 'text';
   @Input() name = 'text';
-  @Input() model = 'text';
+  @Input() model : any;
   @Output() changeModel = new EventEmitter<string>();
+
+ 	//allow negative numbers to be used
+   @Input('allow-negative') allowNegative: boolean = false; //this is set to false everywhere possible
+
+   //emit the number from the input on change
+   @Output('app-input') change = new EventEmitter<string>();
 
 
   constructor() { }
 
   ngOnInit() {}
+
+  onChange() {
+    this.change.emit(String(this.model));
+  }
+
+ 
 
   focused: boolean;
 

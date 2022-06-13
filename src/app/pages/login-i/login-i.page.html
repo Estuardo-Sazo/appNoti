@@ -1,7 +1,7 @@
 <ion-content class="ion-padding">
   <h1>Comunidad App</h1>
   <h3>¡Inicia sesión para continuar!</h3>
-  <form (ngSubmit)="login(fLogin)" #fLogin="ngForm">
+  <!-- <form (ngSubmit)="login(fLogin)" #fLogin="ngForm">
     <div class="form-field">
       <label [ngClass]="focused ? 'label-focused' : ''">CUI o Correo</label>
       <input type="text" name="email" [(ngModel)]="user.email" (focus)="focused = true" (blur)="onBlur($event)"
@@ -18,6 +18,98 @@
     <app-button label="Ingresar" type="submit"></app-button>
     <app-icon-button icon="logo-google" label="TS"></app-icon-button>
   </form>
+
+  -->
+
+  <ion-card class="ion-no-margin">
+    <ion-card-content>
+      <form
+        [formGroup]="validationFormUser"
+        (ngSubmit)="LoginUser(validationFormUser.value)"
+      >
+        <div class="wrapform">
+          <ion-item>
+            <ion-input
+              type="text"
+              name="email"
+              formControlName="email"
+              placeholder="Email"
+            >
+              <ion-icon name="mail-outline"></ion-icon>
+            </ion-input>
+          </ion-item>
+          <div>
+            <ng-container
+              *ngFor="let validation of validationUserMessage.email"
+            >
+              <div
+                class="error_message"
+                *ngIf="validationFormUser.get('email').hasError(validation.type) && (validationFormUser.get('email').dirty || validationFormUser.get('email').touched)"
+              >
+                {{validation.message}}
+              </div>
+            </ng-container>
+          </div>
+
+          <ion-item>
+            <ion-input
+              type="password"
+              name="password"
+              formControlName="password"
+              placeholder="**************"
+            >
+              <ion-icon name="lock-closed"></ion-icon>
+            </ion-input>
+          </ion-item>
+
+          <div>
+            <ng-container
+              *ngFor="let validation of validationUserMessage.password"
+            >
+              <div
+                class="error_message"
+                *ngIf="validationFormUser.get('password').hasError(validation.type) && (validationFormUser.get('password').dirty || validationFormUser.get('password').touched)"
+              >
+                {{validation.message}}
+              </div>
+            </ng-container>
+          </div>
+        </div>
+        <div class="password_forgot">
+          <ion-button fill="clear" class="ion-no-padding"
+            >ForgotPasword?</ion-button
+          >
+        </div>
+        <div class="sign-btn-wrap">
+          <ion-button
+            shape="round"
+            type="submit"
+            fill="solid"
+            class="sign-btn"
+            [disabled]="!validationFormUser.valid"
+          >
+            Login</ion-button
+          >
+        </div>
+
+        <div class="text-tag">
+          <span>Or via Social Media</span>
+        </div>
+
+        <div class="social-btns">
+          <ion-button fill="clear" class="facebookbtn ion-no-padding">
+            <ion-img src="assets/images/facebook.png"></ion-img>
+          </ion-button>
+          <ion-button fill="clear" class="googlebtn ion-no-padding">
+            <ion-img src="assets/images/google.png"></ion-img>
+          </ion-button>
+          <ion-button fill="clear" class="applebtn ion-no-padding">
+            <ion-img src="assets/images/apple.png"></ion-img>
+          </ion-button>
+        </div>
+      </form>
+    </ion-card-content>
+  </ion-card>
 
   <p class="footer-text">
     Soy un nuevo usuario,<a routerLink="/register"> Registrarme</a>

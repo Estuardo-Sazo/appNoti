@@ -13,9 +13,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SwiperModule } from 'swiper/angular';
-import { ReportPageModule } from './modal/report/report.module';
 import { PipesModule } from './pipes/pipes.module';
-import { ReportPage } from './modal/report/report.page';
+
+import { ReactiveFormsModule, FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [AppComponent],
@@ -26,7 +26,9 @@ import { ReportPage } from './modal/report/report.page';
      HttpClientModule,
      SwiperModule,
      PipesModule,
-     IonicStorageModule.forRoot()
+     IonicStorageModule.forRoot(),
+     ReactiveFormsModule,
+     FormsModule
     ],
   providers: [
     Geolocation,
