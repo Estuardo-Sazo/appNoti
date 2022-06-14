@@ -32,7 +32,7 @@ export interface RespuestaPosts {
     ok: boolean;
     report: Report;
   }
-  
+
   export interface Comment{
     _id?: string;
     created?: string;
@@ -41,13 +41,12 @@ export interface RespuestaPosts {
     status?: string;
     reference: string;
   }
-  
-  
+
   export interface Post {
     imgs?: string[];
     _id?: string;
     message?: string;
-    likes:string[];
+    likes: string[];
     coords?: string;
     user?: Usuario;
     created?: string;
@@ -71,8 +70,8 @@ export interface RespuestaPosts {
     email?: string;
     cui?: string;
     phone?: string;
-    password?:string;
-    confirm?:string;
+    password?: string;
+    confirm?: string;
 
   }
 

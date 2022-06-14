@@ -101,6 +101,11 @@ h3 {
   background: #E1EAF9;
 }
 
+.error_message{
+  font-size: 0.7rem;
+  font-weight:200;
+  color: red;
+}
 ion-header{
   position: absolute;
 }
@@ -141,7 +146,6 @@ ion-card-content{
  ion-item{
    color:#74787E;
     --border-color:#D4D7DB;
-
    --highlight-color-focused:#215AB7;
    --padding-start:0;
    --inner-padding-end:0;
@@ -151,12 +155,12 @@ ion-card-content{
    font-size: 1.1rem;
    ion-input{
      color:#74787E;
-     font-size: 13px;
-     ion-icon{
-       padding-right: 6px;
-       font-size: 1.5rem;
-     }
+     font-size: 13px;     
    }
+   ion-icon{
+    padding-right: 6px;
+    font-size: 1.5rem;
+  }
 
    ion-input:hover{
      color:#215AB7;
@@ -201,8 +205,3 @@ ion-card-content{
    }
  }
 
- .error_message{
-   font-size: 0.7rem;
-   font-weight:200;
-   color: red;
- }

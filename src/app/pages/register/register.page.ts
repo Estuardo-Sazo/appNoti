@@ -36,7 +36,7 @@ export class RegisterPage implements OnInit {
     private navCtr: NavController
   ) {
 
-    this.loading = this.loadingCtrl
+    this.loading = this.loadingCtrl;
   }
 
 
@@ -96,7 +96,7 @@ export class RegisterPage implements OnInit {
     ],
     password: [
       { type: "required", message: "Por favor ingresa tu contraseña" },
-      { type: "minlength", message: "La contraseña debe tener al menos  6 caracteres" },
+      { type: "minlength", message: "La contraseña debe tener al menos  6 caracteres y debe contener(Mayúsculas, números y símbolos especiales)" },
       { type: "pattern", meesage: "La contraseña debe contener(Mayúsculas, números y símbolos especiales)" }
     ]
   }
@@ -124,16 +124,48 @@ export class RegisterPage implements OnInit {
 
       password: new FormControl('', Validators.compose([
         Validators.required,
+        Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z0-9$@$!%*?&].{8,}'),
         Validators.minLength(6),
-        Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z0-9$@$!%*?&].{8,}')
+
       ]))
 
-    })
+    });
 
   }
 
   registerUser(value) {
     this.showalert();
+    console.log(value);
+    
+    /* if(fRegistro.invalid){
+      //Completar los campos
+      this.uiService.alertaInfo("Campos incompletos.") 
+      return;}
+      console.log(this.register.cui.toString().length);
+      
+      if(this.register.cui.toString().length!=13 ){
+        this.uiService.alertaInfo("DPI invalido") 
+        return;}
+
+      if(this.register.password == this.register.confirm){
+        
+
+        const valido= await this.usuarioService.registro(this.register);
+
+            if(valido){
+              //Navegar al tab 
+                this.navCtrl.navigateRoot('/main/tabs/tab1',{animated:true});
+            }else{
+              //mostrar alerta de usuario incorrecto
+              this.uiService.alertaInfo("Error en los datos.")
+              
+            }
+      }else{
+        //mostrar alerta de usuario incorrecto
+        this.uiService.alertaInfo("Contraseñas no coinsiden.");
+      }  */
+
+
     /* try {
       this.authService.userRegistration(value).then(response => {
         console.log(response);
