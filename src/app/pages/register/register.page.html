@@ -64,6 +64,7 @@
             type="text"
             placeholder="Nombre"
             formControlName="name"
+            [(ngModel)]="register.names"
           >
             <ion-icon name="person-outline"></ion-icon>
           </ion-input>
@@ -85,6 +86,8 @@
             type="text"
             placeholder="Apellido"
             formControlName="surname"
+            [(ngModel)]="register.surnames"
+
           >
             <ion-icon name="person-outline"></ion-icon>
           </ion-input>
@@ -104,8 +107,10 @@
           <ion-input
             name="phone"
             type="text"
-            placeholder="Phone No."
+            placeholder="Teléfono"
             formControlName="phone"
+            [(ngModel)]="register.phone"
+
           >
             <ion-icon name="call-outline"></ion-icon>
           </ion-input>
@@ -126,6 +131,8 @@
             type="text"
             placeholder="Email"
             formControlName="email"
+            [(ngModel)]="register.email"
+
           >
             <ion-icon name="mail-outline"></ion-icon>
           </ion-input>
@@ -142,8 +149,10 @@
           <ion-input
             name="password"
             type="password"
-            placeholder="************"
+            placeholder="Contraseña"
             formControlName="password"
+            [(ngModel)]="register.password"
+
           >
             <ion-icon name="lock-closed"></ion-icon>
           </ion-input>
@@ -152,6 +161,27 @@
           <div
             class="error_message"
             *ngIf="ValidationFormUSer.get('password').hasError(validation.type) && (ValidationFormUSer.get('password').dirty || ValidationFormUSer.get('password').touched)"
+          >
+            {{validation.message}}
+          </div>
+        </ng-container>
+
+        <ion-item>
+          <ion-input
+            name="password2"
+            type="password"
+            placeholder="Confirmar contraseña"
+            formControlName="password2"
+            [(ngModel)]="register.confirm"
+
+          >
+            <ion-icon name="lock-closed"></ion-icon>
+          </ion-input>
+        </ion-item>
+        <ng-container *ngFor="let validation of validationMessages.password2">
+          <div
+            class="error_message"
+            *ngIf="ValidationFormUSer.get('password2').hasError(validation.type) && (ValidationFormUSer.get('password2').dirty || ValidationFormUSer.get('password2').touched)"
           >
             {{validation.message}}
           </div>

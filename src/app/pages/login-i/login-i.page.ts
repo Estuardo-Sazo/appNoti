@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { NavController } from '@ionic/angular';
+import { AlertController, LoadingController, NavController } from '@ionic/angular';
 import { UiServiceService } from 'src/app/services/ui-service.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import {FormGroup, FormBuilder, Validators, FormControl} from '@angular/forms';
@@ -21,21 +21,26 @@ export class LoginIPage implements OnInit {
     private usuarioService: UsuarioService,
     private navCtrl: NavController,
     private uiService: UiServiceService,
-    public formbuider: FormBuilder
+    public formbuider: FormBuilder,
+    public loadingCtrl: LoadingController,
+    private alertCtrl: AlertController,
   ) {}
 
   
   validationUserMessage ={
     email:[
-      {type:"required", message:"Please enter your Email"},
-      {type:"pattern", message:"The Email entered is Incorrect.Try again"}
+      {type:"required", message:"Por favor ingresa tu correo electrónico"},
+      {type:"pattern", message:"Por favor, el correo electrónico ingresado es incorrecto. Intentar otra vez.."},
+    
     ],
     password:[
-      {type:"required", message:"please Enter your Password!"},
-      {type:"minlength", message:"The Password must be at least 5 characters or more"}
+      {type:"required", message:"Por favor ingresa tu contraseña"},
+      {type:"minlength", message:"La contraseña debe tener al menos  6 caracteres"}
 
     ]
   }
+
+  loading:any;
 
   validationFormUser: FormGroup;
 
@@ -48,7 +53,7 @@ export class LoginIPage implements OnInit {
       ])),
       password: new FormControl('', Validators.compose([
         Validators.required,
-        Validators.minLength(5)
+        Validators.minLength(6)
       ]))
     });
   }
@@ -61,11 +66,8 @@ export class LoginIPage implements OnInit {
     }
   }
 
- /*  async login(fLogin: NgForm) {
-    if(fLogin.invalid){
-      //Completar los campos
-      this.uiService.alertaInfo("Campos incompletos.") 
-      return;}
+  async login(value) {
+    this.showalert();
     if (this.user.email === '' || this.user.password === '') {
       //mostrar alerta de usuario incorrecto
       this.uiService.alertaInfo('Todos los campos deben estar completos.');
@@ -77,11 +79,25 @@ export class LoginIPage implements OnInit {
 
       if (valido) {
         //Navegar al tab
+        this.loading.dismiss();
+
         this.navCtrl.navigateRoot('/main/tabs/tab1', { animated: true });
       } else {
         //mostrar alerta de usuario incorrecto
+        this.loading.dismiss();
         this.uiService.alertaInfo('Usario y contraseña son incorrectos.');
       }
     }
-  } */
+  }
+
+  async showalert() {
+     this.loading = await this.loadingCtrl.create({
+      message: "Por favor espere...",
+
+    });
+    this.loading.present();
+  }
+
 }
+
+

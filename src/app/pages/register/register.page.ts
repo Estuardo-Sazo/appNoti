@@ -51,53 +51,23 @@ export class RegisterPage implements OnInit {
     }
   }
 
-  async registr(fRegistro: NgForm) {
-
-    console.log(this.data);
-
-    /* if(fRegistro.invalid){
-      //Completar los campos
-      this.uiService.alertaInfo("Campos incompletos.") 
-      return;}
-      console.log(this.register.cui.toString().length);
-      
-      if(this.register.cui.toString().length!=13 ){
-        this.uiService.alertaInfo("DPI invalido") 
-        return;}
-
-      if(this.register.password == this.register.confirm){
-        
-
-        const valido= await this.usuarioService.registro(this.register);
-
-            if(valido){
-              //Navegar al tab 
-                this.navCtrl.navigateRoot('/main/tabs/tab1',{animated:true});
-            }else{
-              //mostrar alerta de usuario incorrecto
-              this.uiService.alertaInfo("Error en los datos.")
-              
-            }
-      }else{
-        //mostrar alerta de usuario incorrecto
-        this.uiService.alertaInfo("Contraseñas no coinsiden.");
-      } */
-
-  }
-
-
   validationMessages = {
     name: [{ type: "required", message: "Por favor ingresa tu nombre" }],
     surname: [{ type: "required", message: "Por favor ingresa tu apellido" }],
     phone: [{ type: "pattern", message: "Por favor ingrese un número de teléfono válido" }],
     email: [
-      { type: 'required', message: "Por favor ingresa tu correo electrónico" },
-      { type: "pattern", meesage: "Por favor, el correo electrónico ingresado es incorrecto. Intentar otra vez.." }
+      {type:"required", message:"Por favor ingresa tu correo electrónico"},
+      {type:"pattern", message:"Por favor, el correo electrónico ingresado es incorrecto. Intentar otra vez.."},
     ],
     password: [
       { type: "required", message: "Por favor ingresa tu contraseña" },
       { type: "minlength", message: "La contraseña debe tener al menos  6 caracteres y debe contener(Mayúsculas, números y símbolos especiales)" },
-      { type: "pattern", meesage: "La contraseña debe contener(Mayúsculas, números y símbolos especiales)" }
+      { type: "pattern", meesage: "La contraseña debe contener(Mayúsculas, números y símbolos especiales '$,#,?,@,!')" }
+    ],
+    password2: [
+      { type: "required", message: "Por favor ingresa tu contraseña" },
+      { type: "minlength", message: "La contraseña debe tener al menos  6 caracteres y debe contener(Mayúsculas, números y símbolos especiales '$,#,?,@,!,-,_')" },
+      { type: "pattern", meesage: "La contraseña debe contener(Mayúsculas, números y símbolos especiales '$,#,?,@,!,-,_')" }
     ]
   }
 
@@ -124,7 +94,13 @@ export class RegisterPage implements OnInit {
 
       password: new FormControl('', Validators.compose([
         Validators.required,
-        Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z0-9$@$!%*?&].{8,}'),
+        Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&#-_])[A-Za-z0-9$@$!%*?&#-_].{8,}'),
+        Validators.minLength(6),
+
+      ])),
+      password2: new FormControl('', Validators.compose([
+        Validators.required,
+        Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&#-_])[A-Za-z0-9$@$!%*?&#-_].{8,}'),
         Validators.minLength(6),
 
       ]))
@@ -133,22 +109,14 @@ export class RegisterPage implements OnInit {
 
   }
 
-  registerUser(value) {
-    this.showalert();
-    console.log(value);
-    
-    /* if(fRegistro.invalid){
-      //Completar los campos
-      this.uiService.alertaInfo("Campos incompletos.") 
-      return;}
-      console.log(this.register.cui.toString().length);
+  async registerUser(value) {       
       
-      if(this.register.cui.toString().length!=13 ){
+      /* if(this.register.cui.toString().length!=13 ){
         this.uiService.alertaInfo("DPI invalido") 
-        return;}
+        return;
+      } */
 
       if(this.register.password == this.register.confirm){
-        
 
         const valido= await this.usuarioService.registro(this.register);
 
@@ -163,7 +131,7 @@ export class RegisterPage implements OnInit {
       }else{
         //mostrar alerta de usuario incorrecto
         this.uiService.alertaInfo("Contraseñas no coinsiden.");
-      }  */
+      }  
 
 
     /* try {
@@ -210,7 +178,7 @@ export class RegisterPage implements OnInit {
 
   async showalert() {
     var load = await this.loadingCtrl.create({
-      message: "please wait....",
+      message: "Por favor espere...",
 
     })
     load.present();
