@@ -67,7 +67,6 @@ export class LoginIPage implements OnInit {
   }
 
   async login(value) {
-    this.showalert();
     if (this.user.email === '' || this.user.password === '') {
       //mostrar alerta de usuario incorrecto
       this.uiService.alertaInfo('Todos los campos deben estar completos.');
@@ -79,7 +78,6 @@ export class LoginIPage implements OnInit {
 
       if (valido) {
         //Navegar al tab
-        this.loading.dismiss();
 
         this.navCtrl.navigateRoot('/main/tabs/tab1', { animated: true });
       } else {

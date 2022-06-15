@@ -30,8 +30,11 @@ export class SearchUserPage implements OnInit {
 
   search(event) {
     const search = event.detail.value;
-    this.usuarioService.getListUsersSearch(search).subscribe((resp) => {
-      console.log(resp);
-    });
+    if (search.length>0) {
+      this.usuarioService.getListUsersSearch(search).subscribe((resp) => {
+        console.log(resp);
+      });
+    }
+    
   }
 }

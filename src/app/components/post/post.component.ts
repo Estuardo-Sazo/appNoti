@@ -37,24 +37,25 @@ export class PostComponent implements OnInit {
   ngOnInit() {
     this.user = this.usuarioService.getUsuario();
     this.likes=this.post.likes.length;
-    if(this.post.likes.includes(this.user._id)){
+
+    if(this.post.likes.includes(this.user._id)){      
       this.liked=true;
     }else{
       this.liked=false;
-
     }
   }
 
   async like(postId){
+    console.log(this.likes);    
      let data= await this.postsService.like(postId);
      console.log(data);
     this.liked=true;
-    this.likes++;
-
-     
+    this.likes++;     
   }
 
   async dislike(postId){
+    console.log(this.likes);
+
     let data= await this.postsService.dislike(postId);
     console.log(data);
     this.liked=false;
