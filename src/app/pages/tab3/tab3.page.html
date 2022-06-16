@@ -48,11 +48,13 @@
             <ion-list>
               
               <ion-item>
-                <ion-label position="floating">Email</ion-label>
+                <ion-label position="floating">Correo</ion-label>
                 <ion-input name="email"
                            type="email"
                            [(ngModel)]="user.email"
-                           required></ion-input>
+                           required 
+                           disabled
+                           ></ion-input>
               </ion-item>
 
               <ion-item>
@@ -72,11 +74,19 @@
               </ion-item>
 
               <ion-item>
+                <ion-label  position="floating">Teléfono</ion-label>
+                <ion-input name="phone"
+                           type="text"
+                           [(ngModel)]="user.phone"
+                           ></ion-input>
+              </ion-item>
+
+              <ion-item>
                 <ion-label  position="floating">CUI</ion-label>
                 <ion-input name="cui"
                            type="text"
                            [(ngModel)]="user.cui"
-                           disabled></ion-input>
+                           ></ion-input>
               </ion-item>
 
             </ion-list>

@@ -1,51 +1,5 @@
 <ion-content class="ion-padding">
-  <!--   <h1>Comunidad App,</h1>
-  <h3>¡Regístrate para empezar!</h3> -->
-
-  <!-- <form (ngSubmit)="registr(fRegistro)" #fRegistro="ngForm">
-
-    
-    
-    <div class="form-field">
-      <label [ngClass]="focused ? 'label-focused' : ''">* Nombres </label>
-      <input type="text" name="names" [(ngModel)]="register.names" (focus)="focused = true" (blur)="onBlur($event)"
-        required />
-    </div>
-    <div class="form-field">
-      <label [ngClass]="focused ? 'label-focused' : ''">* Apellidos </label>
-      <input type="text" name="surnames" [(ngModel)]="register.surnames" (focus)="focused = true" (blur)="onBlur($event)"
-        required />
-    </div>
-    <div class="form-field">
-      <label [ngClass]="focused ? 'label-focused' : ''">DPI </label>
-      <input type="number" required minlength="13" maxlength="13" name="cui" [(ngModel)]="register.cui" (focus)="focused = true" (blur)="onBlur($event)"
-         />
-    </div>
-    <div class="form-field">
-      <label [ngClass]="focused ? 'label-focused' : ''">Teléfono </label>
-      <input type="tel" required name="phone" [(ngModel)]="register.phone" (focus)="focused = true" (blur)="onBlur($event)"
-         />
-    </div>
-    <div class="form-field">
-      <label [ngClass]="focused ? 'label-focused' : ''">* Correo </label>
-      <input type="email" name="email" [(ngModel)]="register.email" (focus)="focused = true" (blur)="onBlur($event)"
-        required />
-    </div>
-    <div class="form-field">
-      <label [ngClass]="focused ? 'label-focused' : ''">* Contraseña</label>
-      <input type="password" name="password" [(ngModel)]="register.password" (focus)="focused = true"
-        (blur)="onBlur($event)" required autocomplete="on" />
-    </div>
-    <div class="form-field">
-      <label [ngClass]="focused ? 'label-focused' : ''">* Confirmar Contraseña</label>
-      <input type="password" name="confirm" [(ngModel)]="register.confirm" (focus)="focused = true"
-        (blur)="onBlur($event)" required autocomplete="on" (keyup.enter)="login(fLogin)" />
-    </div>
-
-    <app-button label="Registrarme" type="submit"></app-button>
-    <app-icon-button icon="logo-google" label="TS"></app-icon-button>
-  </form> -->
-
+  
   <ion-card class="ion-no-margin">
     <ion-card-header>
       <ion-card-title> ¡Regístrate! </ion-card-title>
@@ -194,25 +148,10 @@
             fill="solid"
             class="sign-btn"
             [disabled]="!ValidationFormUSer.valid"
-            >Sign Up</ion-button
+            >Registrarme</ion-button
           >
         </div>
 
-        <div class="text-tag">
-          <span>Sign Up with</span>
-        </div>
-
-        <div class="social-btns">
-          <ion-button fill="clear" class="facebookbtn ion-no-padding">
-            <ion-img src="assets/images/facebook.png"></ion-img>
-          </ion-button>
-          <ion-button fill="clear" class="googlebtn ion-no-padding">
-            <ion-img src="assets/images/google.png"></ion-img>
-          </ion-button>
-          <ion-button fill="clear" class="applebtn ion-no-padding">
-            <ion-img src="assets/images/apple.png"></ion-img>
-          </ion-button>
-        </div>
       </ion-card-content>
     </form>
   </ion-card>
