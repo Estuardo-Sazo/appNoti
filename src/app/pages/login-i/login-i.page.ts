@@ -5,6 +5,8 @@ import { UiServiceService } from 'src/app/services/ui-service.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import {FormGroup, FormBuilder, Validators, FormControl} from '@angular/forms';
 
+import { GooglePlus } from '@awesome-cordova-plugins/google-plus/ngx';
+
 @Component({
   selector: 'app-login-i',
   templateUrl: './login-i.page.html',
@@ -24,6 +26,7 @@ export class LoginIPage implements OnInit {
     public formbuider: FormBuilder,
     public loadingCtrl: LoadingController,
     private alertCtrl: AlertController,
+    private googlePlus: GooglePlus
   ) {}
 
   
@@ -78,14 +81,29 @@ export class LoginIPage implements OnInit {
 
       if (valido) {
         //Navegar al tab
-
         this.navCtrl.navigateRoot('/main/tabs/tab1', { animated: true });
       } else {
         //mostrar alerta de usuario incorrecto
-        this.loading.dismiss();
         this.uiService.alertaInfo('Usario y contraseña son incorrectos.');
       }
     }
+  }
+
+   loginGoogle() {
+    this.googlePlus.login({})
+  .then(res => {
+    console.log(res);
+
+    this.usuarioService.loginGoogle(
+      res.email,
+      res.givenName,
+      res.familyName,
+    );
+    
+
+    
+  })
+  .catch(err => console.error(err));
   }
 
   async showalert() {

@@ -12,6 +12,7 @@ import {
 } from '@ionic-native/file-transfer/ngx';
 
 const URL = environment.url;
+//Prueba
 
 @Injectable({
   providedIn: 'root',
@@ -19,15 +20,26 @@ const URL = environment.url;
 export class UsuarioService {
   token: string = null;
   img: string = '';
-  private usuario: Usuario = {};
+  private usuario: Usuario = { };
   newURL = new EventEmitter<string>();
 
   constructor(
     private http: HttpClient,
     private storage: Storage,
     private navCtrl: NavController,
-    private fileTransfer: FileTransfer
+    private fileTransfer: FileTransfer,
+    private uiService: UiServiceService
   ) {}
+
+  register: Usuario = {
+    email: '',
+    password: '',
+    names: "",
+    surnames: "",
+    cui: "",
+    phone: "",
+    google: false,
+  };
 
   login(email: string, password: string) {
     const data = { email, password };
@@ -37,11 +49,52 @@ export class UsuarioService {
         console.log(resp);
         if (resp['ok'] == true) {
           await this.guardarToken(resp['token']);
+          this.uiService.presentToast('Inicio de sesión.');
+
           resolve(true);
         } else {
           this.token = null;
           this.storage.clear();
           resolve(false);
+        }
+      });
+    });
+  }
+
+  loginGoogle(email: string,names: string, surnames: string) {
+    const data = { email };
+
+    return new Promise((resolve) => {
+      this.http.post(`${URL}/user/login-google`, data).subscribe(async (resp) => {
+        console.log(resp);
+        if (resp['ok'] == true) {
+          this.uiService.presentToast('Inicio de sesión Google.');
+          await this.guardarToken(resp['token']);
+          this.navCtrl.navigateRoot('/main/tabs/tab1', { animated: true });
+        } else {
+          this.token = null;
+          this.storage.clear();
+          if (resp['isregister'] == true) {
+            this.uiService.alertaInfo(resp['mensaje']);
+            resolve(false);
+          }else{
+            this.uiService.presentToast('Resgistrando cuenta con Google.');
+            this.register.names=names;
+            this.register.surnames=surnames;
+            this.register.email=email;
+            this.register.google=true;
+            const valido= await this.registro(this.register);
+            if(valido){ 
+              this.navCtrl.navigateRoot('/main/tabs/tab1', { animated: true });
+              resolve(true);
+            }else{
+              //mostrar alerta de usuario incorrecto
+              this.uiService.alertaInfo("Error en los datos.")
+              resolve(false);              
+            }
+          }
+
+          
         }
       });
     });

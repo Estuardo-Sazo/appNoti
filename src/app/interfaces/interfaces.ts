@@ -72,6 +72,7 @@ export interface RespuestaPosts {
     phone?: string;
     password?: string;
     confirm?: string;
+    google?: boolean;
 
   }
 

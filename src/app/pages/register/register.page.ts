@@ -19,6 +19,8 @@ export class RegisterPage implements OnInit {
     cui: "",
     phone: "",
     confirm: "",
+    google: false
+
   };
   data = {
     input1: '',

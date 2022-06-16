@@ -19,6 +19,8 @@
     "@angular/platform-browser": "~12.1.1",
     "@angular/platform-browser-dynamic": "~12.1.1",
     "@angular/router": "~12.1.1",
+    "@awesome-cordova-plugins/core": "^5.43.0",
+    "@awesome-cordova-plugins/google-plus": "^5.43.0",
     "@capacitor/core": "3.2.3",
     "@ionic-native/android-permissions": "^5.36.0",
     "@ionic-native/camera": "^5.1.0",
@@ -61,6 +63,7 @@
     "cordova-plugin-file": "^6.0.2",
     "cordova-plugin-file-transfer": "^1.7.1",
     "cordova-plugin-geolocation": "^4.1.0",
+    "cordova-plugin-googleplus": "^8.5.2",
     "cordova-plugin-ionic-keyboard": "^2.2.0",
     "cordova-plugin-ionic-webview": "^4.2.1",
     "cordova-plugin-splashscreen": "^5.0.2",
@@ -103,7 +106,10 @@
       "cordova-plugin-camera": {},
       "cordova-plugin-file": {},
       "cordova-plugin-file-transfer": {},
-      "cordova-plugin-whitelist": {}
+      "cordova-plugin-whitelist": {},
+      "cordova-plugin-googleplus": {
+        "REVERSED_CLIENT_ID": "1095672716059-88gdnbdnlk6hsbkd81m8667s7r7ediv8.apps.googleusercontent.com"
+      }
     },
     "platforms": [
       "android"

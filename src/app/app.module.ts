@@ -16,6 +16,7 @@ import { SwiperModule } from 'swiper/angular';
 import { PipesModule } from './pipes/pipes.module';
 
 import { ReactiveFormsModule, FormsModule} from '@angular/forms';
+import { GooglePlus } from '@awesome-cordova-plugins/google-plus/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -34,6 +35,7 @@ import { ReactiveFormsModule, FormsModule} from '@angular/forms';
     Geolocation,
     Camera,
     FileTransfer,
+    GooglePlus,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })
