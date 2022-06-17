@@ -1,42 +1,96 @@
-<div class="wrapper">
-  <ion-row>
-
-    
+<div class="">
+  <!-- <ion-row>
     <ion-col size="12">
-      
       <ion-item>
         <ion-avatar slot="start">
-          <img src="{{url}}/user/image/{{comment.user._id}}/{{comment.user.image}}" alt="" />
+          <img
+            src="{{ url }}/user/image/{{ comment.user._id }}/{{
+              comment.user.image
+            }}"
+            alt=""
+          />
         </ion-avatar>
         <ion-buttons slot="end">
-          <ion-button        
-            color="danger" 
+          <ion-button
+            color="danger"
             *ngIf="comment.user._id === user._id"
-            (click)="showConfirm(comment._id)"          
+            (click)="showConfirm(comment._id)"
           >
-          <ion-icon name="trash"></ion-icon>
-        </ion-button>
+            <ion-icon name="trash"></ion-icon>
+          </ion-button>
         </ion-buttons>
         <ion-label>
-          <h3 class="text-bold">{{comment.user.names}} {{comment.user.surnames}}</h3>
-          <p>{{comment.created | date:'d MMM y, h:mm a'}}</p>
-  
+          <h3 class="text-bold">
+            {{ comment.user.names }} {{ comment.user.surnames }}
+          </h3>
+          <p>{{ comment.created | date: "d MMM y, h:mm a" }}</p>
         </ion-label>
       </ion-item>
     </ion-col>
-    
   </ion-row>
   <ion-row>
     <ion-col size="2"></ion-col>
     <ion-col size="10">
-    
       <ion-row>
         <ion-col size="12">
-          <div>{{comment.comment}}</div>
+          <div>{{ comment.comment }}</div>
         </ion-col>
       </ion-row>
-  
     </ion-col>
-  </ion-row>
+  </ion-row> -->
 
+  <ion-row>
+    <ion-col *ngIf="comment.user._id === user._id" size="2">
+        <ion-avatar class="avatar">
+          <img
+            src="{{ url }}/user/image/{{ comment.user._id }}/{{
+              comment.user.image
+            }}"
+            alt=""
+            style="max-width:2.5rem; max-height:2.5rem;"
+          />
+        </ion-avatar>
+    </ion-col>   
+    <ion-col size="10">
+      <div class="no-gutters">
+        <div class="" [ngClass]="comment.user._id === user._id?'message-me':'message-your'">
+          <div class="chat-bubble " [ngClass]="comment.user._id === user._id?'chat-bubble--right':'chat-bubble--left'">
+            
+             
+              <div class="text-bold">{{ comment.user.names }} {{ comment.user.surnames }} 
+
+                  
+              </div>   
+                   
+                     
+              <ion-buttons class="btn-delete" >
+                <ion-button
+                  color="danger"
+                  *ngIf="comment.user._id === user._id"
+                  (click)="showConfirm(comment._id)"
+                >
+                  <ion-icon name="trash"></ion-icon>
+                </ion-button>
+              </ion-buttons> 
+        
+
+            <span>{{ comment.comment }}</span><br />
+            <div class="time" text-ring>{{ comment.created | date: "d MMM y, h:mm a" }}</div>
+          </div>
+        </div>
+      </div>
+    </ion-col>
+    <ion-col *ngIf="comment.user._id != user._id" size="2">
+      <ion-avatar class="avatar">
+        <img
+          src="{{ url }}/user/image/{{ comment.user._id }}/{{
+            comment.user.image
+          }}"
+          alt=""
+          style="max-width:2.5rem; max-height:2.5rem;"
+        />
+      </ion-avatar>
+    </ion-col>   
+
+  </ion-row>
 </div>

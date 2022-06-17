@@ -55,11 +55,12 @@ export class ReportPage implements OnInit {
       this.userl = this.usuarioService.getUsuario();
       this.commentsService.getComments(this.reportId).subscribe((resp)=>{
         this.comments.push(...resp.comments);
+        this.comments.reverse();
         console.log(this.comments);
       });
 
       this.commentsService.newComment.subscribe((comment)=>{
-        this.comments.push(comment);
+        this.comments.unshift(comment);
       });
 
       this.commentsService.delComment.subscribe((rep: any)=>{

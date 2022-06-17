@@ -31,3 +31,121 @@ ion-card-title{
     font-weight:bold;
 }
 
+
+
+/* MESSAGE */
+
+.message{
+    padding:10px;
+    border-radius: 10px;
+    margin-bottom:4px;
+    white-space: pre-wrap;
+}
+
+.other-message{
+    background: #004170;
+    color: #fff;
+}
+.my-message{
+    background: #98a1a8;
+    color: #fff;
+}
+
+/* .time{
+    color: #dfdfdf;
+    float: right;
+    font-size:small;
+}
+ */
+.message-input{
+    width:100%;
+    border: 1px solid var(--ion-color-medium);
+    border-radius:10px;
+    background:#fff;
+    resize: none;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.msg-btn{
+    --padding-start:0.5rem;
+    --padding-end:0.5rem;
+}
+
+/* Stiles Chat */
+$blue: #78e7c0;
+
+.chat-bubble {
+    padding: 10px 10px;
+    background: #eee;
+    margin: 0px 15px;
+    border-radius: 9px;
+    white-space: pre-wrap;
+    position: relative;
+    animation: fadeIn 1s ease-in;
+    
+    &:after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      width: 0;
+      height: 0;
+      border: 20px solid transparent;
+      border-bottom: 0;
+      margin-top: -10px;
+    }
+    
+    &--left {
+       &:after {
+        left: 0;
+        border-right-color: #eee;
+          border-left: 0;
+        margin-left: -20px;
+      }
+    }
+    
+    &--right {
+      &:after {
+        right: 0;
+        border-left-color: $blue;
+          border-right: 0;
+        margin-right: -20px;
+      }
+    }
+
+    .time{
+        margin-top: 5px;
+        color: #98a1a8;
+        font-size:small;
+        text-align: right;
+    }
+  }
+
+  .message-me {
+    .chat-bubble {
+      background: $blue;
+      color: #fff;
+    }
+  }
+  .chat-box-tray {
+    background: #eee;
+    display: flex;
+    align-items: baseline;
+    padding: 10px 15px;
+    align-items: center;
+    bottom: 0;    
+    ion-input {
+      margin: 0 10px;
+      padding: 6px 2px;
+    }
+    
+    ion-icon {
+      color: grey;
+      font-size: 30px;
+      vertical-align: middle;
+      
+      &:last-of-type {
+        margin-left: 25px;
+      }
+    }
+  }

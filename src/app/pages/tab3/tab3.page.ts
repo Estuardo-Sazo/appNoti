@@ -9,54 +9,57 @@ import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 @Component({
   selector: 'app-tab3',
   templateUrl: 'tab3.page.html',
-  styleUrls: ['tab3.page.scss']
+  styleUrls: ['tab3.page.scss'],
 })
-export class Tab3Page  implements OnInit{
-
+export class Tab3Page implements OnInit {
   user: Usuario = {
-    image:''
+    image: '',
   };
 
-  imageProfile:String;
-  constructor(private usuarioService: UsuarioService,
-  private uiService: UiServiceService,
-  private postsService: PostsService,
-  private camera: Camera,
+  imageProfile: String;
+  constructor(
+    private usuarioService: UsuarioService,
+    private uiService: UiServiceService,
+    private postsService: PostsService,
+    private camera: Camera
   ) { }
 
   ngOnInit() {
     this.user = this.usuarioService.getUsuario();
-    this.imageProfile=this.usuarioService.getURL(this.user._id,this.user.image);
-    this.usuarioService.newURL.subscribe((url)=>{
-      console.log('NEW URL IMAGE PROFILE', url);
-      this.user.image=url;
-      this.imageProfile=this.usuarioService.getURL(this.user._id,this.user.image);
-
-      this.uiService.presentToast('Actualizanndo Foto de perfil');
+    this.imageProfile = this.usuarioService.getURL(
+      this.user._id,
+      this.user.image
+    );
+    this.usuarioService.newURL.subscribe((url) => {
+      this.user.image = url;
+      this.imageProfile = this.usuarioService.getURL(
+        this.user._id,
+        this.user.image
+      );
       this.usuarioService.actualizarUsuario(this.user);
     });
     console.log(this.user);
-    
   }
 
   async actualizar(fActualizar: NgForm) {
-    if (fActualizar.invalid) { return; }
-   const actulizado= await this.usuarioService.actualizarUsuario(this.user);
+    if (fActualizar.invalid) {
+      return;
+    }
+
+    const actulizado = await this.usuarioService.actualizarUsuario(this.user);
 
     if (actulizado) {
       this.uiService.presentToast('Registro Actalizado!');
     } else {
       this.uiService.presentToast('No se pudo actualizar');
-
     }
   }
   logout() {
-    this.postsService.paginaPosts=0;
+    this.postsService.paginaPosts = 0;
     this.usuarioService.logout();
+  }
 
-   }
-
-   libreria() {
+  libreria() {
     const options: CameraOptions = {
       quality: 60,
       destinationType: this.camera.DestinationType.FILE_URI,
@@ -66,31 +69,25 @@ export class Tab3Page  implements OnInit{
       sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
     };
 
-   this.procesarImagen(options);
+    this.procesarImagen(options);
   }
 
   async procesarImagen(options: CameraOptions) {
-    this.camera.getPicture(options).then((imageData) => {
-      // imageData is either a base64 encoded string or a file URI
-      // If it's base64 (DATA_URL):
-      //const img = window.Ionic.WebView.convertFileSrc(imageData);
-      const resp= this.usuarioService.subirImagen(imageData);
-      if(resp){
-       
-
-      }else{
-        this.uiService.presentToast('Error al acualizar Foto de perfil');
-
+    this.camera.getPicture(options).then(
+      (imageData) => {
+        // imageData is either a base64 encoded string or a file URI
+        // If it's base64 (DATA_URL):
+        //const img = window.Ionic.WebView.convertFileSrc(imageData);
+        const resp = this.usuarioService.subirImagen(imageData);
+        if (resp) {
+        } else {
+          this.uiService.presentToast('Error al acualizar Foto de perfil');
+        }
+      },
+      (err) => {
+        // Handle error
+        console.log(err);
       }
-    
-
-       
-     }, (err) => {
-      // Handle error
-      console.log(err);
-
-     });
+    );
   }
-
-
 }

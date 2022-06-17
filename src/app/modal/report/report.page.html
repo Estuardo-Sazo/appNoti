@@ -64,14 +64,7 @@
       </div>
     </ion-card-content>
     <ion-footer>
-      <ion-row>
-        <ion-col center text-center>
-          <ion-button color="primary" (click)="openModal()">
-            <ion-icon slot="start" name="chatbubbles"></ion-icon>
-            <p> Comentar</p>
-          </ion-button>
-        </ion-col>       
-      </ion-row>
+     
       
     </ion-footer>
     
@@ -80,5 +73,13 @@
   <app-comments [comments]="comments"></app-comments>
   <!-- End comments -->
 
-  <!-- Mapa -->
 </ion-content>
+
+<ion-footer collapse="fade">
+
+      <ion-button expand="full" color="primary" (click)="openModal()">
+        <ion-icon slot="start" name="chatbubbles"></ion-icon>
+        <p> Nuevo Comentario</p>
+      </ion-button>
+  
+</ion-footer>
