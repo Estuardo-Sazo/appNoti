@@ -14,8 +14,8 @@
         <ion-card-header>
           <ion-item lines="none">
             <ion-buttons slot="end">
-              <ion-button >
-                <ion-icon name="checkbox-outline"></ion-icon>
+              <ion-button color="danger" (click)="delete(type._id)">
+                <ion-icon name="close-circle-outline"></ion-icon>
               </ion-button>
             </ion-buttons>
             <ion-label>
@@ -27,7 +27,7 @@
       </ion-card>
     </ion-item>
   </ion-list>
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed" > 
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="presentModal()"> 
     <ion-fab-button>
       <ion-icon name="add-outline"></ion-icon>
     </ion-fab-button>

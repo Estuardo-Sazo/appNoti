@@ -215,6 +215,25 @@ export class UsuarioService {
     });
   }
 
+  actualizarRole(data){
+    const headers = new HttpHeaders({
+      'x-token': this.token,
+    });
+    return new Promise((resolve, reject) => {
+      this.http
+        .post(`${URL}/user/update-role`, data, { headers })
+        .subscribe((resp) => {
+          console.log(resp);
+          
+          if (resp['ok']) {
+            resolve(true);
+          } else {
+            resolve(false);
+          }
+        });
+    });
+  }
+
   subirImagen(img: string): Promise<string> {
     const options: FileUploadOptions = {
       fileKey: 'image',
@@ -258,12 +277,17 @@ export class UsuarioService {
    return this.http.post<RespuestaUsers>(`${URL}/user/list/`,{type},{ headers });
   }
 
-  getListUsersSearch(search){
+  getListUsersSearch(search,type){
     const headers = new HttpHeaders({
       'x-token': this.token
     });
+    
+    const data={
+      search,
+      type
+    };
 
-    console.log(search);
-   return this.http.get<RespuestaUsers>(`${URL}/user/search/${search}`,{ headers });
+    console.log(data);
+   return this.http.post<RespuestaUsers>(`${URL}/user/search/`,data,{ headers });
   }
 }

@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar>
+      
+      <ion-buttons slot="start">
+        <ion-button (click)="dismiss()"><ion-icon name="arrow-back-outline"></ion-icon></ion-button>
+      </ion-buttons>
+    <ion-title>Agregar Tipo de Repote</ion-title>
+   
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content>
+
+  <form (ngSubmit)="registrar(fTypeReport)" #fRegister="ngForm">
+    <ion-grid fixed>
+      <ion-row>
+        <ion-col>
+          <ion-list>
+            <ion-item>
+              <ion-label position="floating">Ingresa el nombre</ion-label>
+              <ion-textarea name="name" [(ngModel)]="tyepReport.name"></ion-textarea>
+            </ion-item>
+
+                      </ion-list>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-button type="submit" color="tertiary" shape="round">
+            Registrar
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+
+</ion-content>

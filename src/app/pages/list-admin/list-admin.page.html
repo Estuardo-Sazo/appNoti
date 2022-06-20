@@ -17,7 +17,7 @@
             <ion-avatar slot="start">
               <img src="{{url}}/user/image/{{user._id}}/{{user.image}}" alt="" />
             </ion-avatar>
-            <ion-buttons slot="end">
+            <ion-buttons slot="end" *ngIf="userL._id != user._id">
               <ion-button        
                 color="danger"                 
                 (click)="delete(user._id)"          
@@ -28,14 +28,19 @@
             <ion-label>
               <h3 class="text-bold">{{user.names}} {{user.surnames}}</h3>
               <p>{{user.email}}</p>
-              <p>Tel. {{user.phone}}</p>      
+              <p>Tel. {{user.phone}}</p>     
+              <p>CUI: {{user.cui}}</p>     
+              <p>Tipo: {{user.type}}</p>      
+
+
             </ion-label>
           </ion-item>
         </ion-card-header>
       </ion-card>
     </ion-item>
-    
+
   </ion-list>
+  
   <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="presentModal()"> 
     <ion-fab-button>
       <ion-icon name="add-outline"></ion-icon>

@@ -28,6 +28,8 @@ export interface RespuestaPosts {
     typeReports: TypeReport[];
   }
 
+  
+
   export interface GetReport {
     ok: boolean;
     report: Report;

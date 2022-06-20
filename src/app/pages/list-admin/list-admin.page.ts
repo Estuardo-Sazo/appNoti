@@ -14,6 +14,7 @@ const URL = environment.url;
 export class ListAdminPage implements OnInit {
   users:Usuario[]=[];
   url: string=URL;
+  userL
   constructor(
     private usuarioService: UsuarioService,
     public alertController: AlertController,
@@ -22,13 +23,17 @@ export class ListAdminPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.usuarioService.getListUsers('ADMIN').subscribe((resp)=>{
-      this.users.push(...resp.users);
-    });
-    console.log(this.users);
+    this.userL = this.usuarioService.getUsuario();
+    this.getUser();
     
   }
   
+  getUser(){
+    this.users=[];
+    this.usuarioService.getListUsers('ADMIN').subscribe((resp)=>{
+      this.users.push(...resp.users);
+    });
+  }
 
   delete(id){
     console.log(id);
@@ -38,12 +43,13 @@ export class ListAdminPage implements OnInit {
       buttons: [
 
         {
-          text: 'Eliminar',
+          text: 'Quitar',
           handler: async () => {
-            const st=true //await this.commentsService.deleteComment(id);
+            const st=await this.usuarioService.actualizarRole({userId:id,role:'USER'});
 
             if(st){
-              this.uiService.alertaInfo('Eliminado Correctamente!');
+              this.uiService.alertaInfo('Quitado Correctamente!');
+              this.getUser();
 
             }else{
               this.uiService.alertaInfo('Error al eliminar, vuelve  a intentarlo');
@@ -66,13 +72,32 @@ export class ListAdminPage implements OnInit {
   async presentModal() {
     const modal = await this.modalController.create({
       component: SearchUserPage,
+      componentProps: { 
+        type: 'ADMIN',
+      }
     });
     modal.onDidDismiss()
       .then((data) => {
         console.log(data['data']);
-         // Here's your selected user!
+        const id = data['data'].data;
+        this.updateRole(id,'ADMIN');
+
+         
     });
     return await modal.present();
+    
+  }
+
+ async updateRole(id,role){
+    console.log(id,role);
+    const data={
+      userId:id,
+      role
+    }
+    const actulizado = await this.usuarioService.actualizarRole(data);
+    if (actulizado) {
+      this.getUser();
+    }
     
   }
 

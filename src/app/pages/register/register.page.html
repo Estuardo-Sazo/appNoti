@@ -6,6 +6,10 @@
       <ion-card-subtitle>
         ¡Regístrate para empezar en Comunidad App!
       </ion-card-subtitle>
+      <p class="login-text">
+        ¿Ya tienes una cuenta? 
+         <a routerLink="/login-i">  Iniciar sesión</a>
+      </p>
     </ion-card-header>
     <form
       [formGroup]="ValidationFormUSer"
@@ -155,7 +159,5 @@
       </ion-card-content>
     </form>
   </ion-card>
-  <p class="footer-text">
-    Ya estoy registrado, <a routerLink="/login-i">Iniciar sesión</a>
-  </p>
+  
 </ion-content>

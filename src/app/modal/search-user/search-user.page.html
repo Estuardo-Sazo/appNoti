@@ -6,10 +6,40 @@
     </ion-buttons>
   </ion-toolbar>
   <ion-toolbar>
-    <ion-searchbar animated placeholder="Buscar Usuario" debounce="500" (ionChange)="search($event)"></ion-searchbar>
+    <ion-searchbar animated placeholder="Buscar Usuario (nombre o CUI)" debounce="500" (ionChange)="search($event)"></ion-searchbar>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+
+  <ion-list *ngFor="let user of users">
+    <ion-item lines="none" *ngIf="userL._id != user._id">
+      <ion-card>
+        <ion-card-header>
+          <ion-item lines="none">
+            <ion-avatar slot="start">
+              <img src="{{url}}/user/image/{{user._id}}/{{user.image}}" alt="" />
+            </ion-avatar>
+            <ion-buttons slot="end">
+              <ion-button        
+                color="success "                 
+                (click)="addUser(user._id)"          
+              >
+              <ion-icon name="add-circle-outline"></ion-icon>
+            </ion-button>
+            </ion-buttons>
+            <ion-label>
+              <h3 class="text-bold">{{user.names}} {{user.surnames}}</h3>
+              <p>{{user.email}}</p>
+              <p>Tel. {{user.phone}}</p>  
+              <p>CUI: {{user.cui}}</p>     
+              <p>Tipo: {{user.type}}</p>      
+            </ion-label>
+          </ion-item>
+        </ion-card-header>
+      </ion-card>
+    </ion-item>
+
+  </ion-list>
 
 </ion-content>
