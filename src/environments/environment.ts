@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  /*  url:'http://3.141.219.13:3000', */
-   url:'http://192.168.0.57:3001'
+   url:'http://3.134.245.160:3001',
+   /* url:'http://192.168.0.57:3001' */
 };
 
 /*
